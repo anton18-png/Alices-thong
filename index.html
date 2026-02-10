@@ -1,374 +1,1084 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Стринги Алисы</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стринги Алисы - Яндекс Браузер без телеметрии</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    body {
-      height: 100vh;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background-image: url('backgrounds/2.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      color: #ffffff;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2.5vh;
-      position: relative;
-    }
+        :root {
+            --primary: #ff3366;
+            --primary-dark: #cc0044;
+            --secondary: #6633ff;
+            --dark: #1a1a2e;
+            --darker: #0f0f1a;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --overlay: rgba(15, 15, 26, 0.85);
+        }
 
-    /* Темный оверлей поверх фона для контраста */
-    body::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.3);
-      z-index: -1;
-    }
+        body {
+            background: 
+                linear-gradient(var(--overlay), var(--overlay)),
+                url('backgrounds/5.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--light);
+            min-height: 100vh;
+            line-height: 1.6;
+            position: relative;
+        }
 
-    .clock {
-      font-size: 9vh;
-      font-weight: 300;
-      letter-spacing: -2px;
-      text-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    }
+        .glass-effect {
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      margin: 1vh 0 3vh;
-    }
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 51, 102, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(102, 51, 255, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
 
-    .logo {
-      width: 72px;
-      height: 72px;
-      object-fit: contain;
-      filter: drop-shadow(0 6px 20px rgba(255,105,180,0.5));
-    }
+/*        .floating-elements {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
 
-    .title {
-      font-size: 3rem;
-      font-weight: 700;
-      font-style: italic;
-      color: #ff69b4;
-      letter-spacing: 1.5px;
-      text-shadow: 
-        0 0 15px rgba(255,105,180,0.7),
-        0 4px 12px rgba(199,21,133,0.6);
-    }
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
 
-    .search-container {
-      width: min(95vw, 880px);
-      position: relative;
-      margin: 0 auto;
-    }
+        .floating-element:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
 
-    .search-input {
-      width: 100%;
-      height: 60px;
-      border: none;
-      border-radius: 18px;
-      padding: 0 70px 0 30px;
-      font-size: 19px;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(10px) brightness(0.8);
-      color: white;
-      outline: none;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
-      transition: all 0.25s;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
+        .floating-element:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 10%;
+            animation-delay: -5s;
+        }
 
-    .search-input:focus {
-      background: rgba(0, 0, 0, 0.6);
-      box-shadow: 0 10px 50px rgba(0,0,0,0.8);
-      transform: translateY(-1px);
-      border-color: rgba(255, 105, 180, 0.3);
-    }
+        .floating-element:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: -10s;
+        }*/
 
-    .search-input::placeholder {
-      color: rgba(255,255,255,0.7);
-      font-size: 18px;
-    }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-30px) rotate(120deg);
+            }
+            66% {
+                transform: translateY(30px) rotate(240deg);
+            }
+        }
 
-    .apps-container {
-      width: 100%;
-      max-width: 1000px;
-      margin-top: 10px;
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    .apps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-      gap: 30px;
-      justify-content: center;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 20px;
-      width: 100%;
-    }
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary);
+        }
 
-    .app {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-decoration: none;
-      color: white;
-      width: 110px;
-      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      border-radius: 16px;
-      padding: 12px 8px;
-      opacity: 1;
-      transform: scale(1);
-    }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
 
-    .app.hidden {
-      display: none;
-      opacity: 0;
-      transform: scale(0.8);
-    }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-    .app:hover {
-      transform: translateY(-5px) scale(1.05);
-      background: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    }
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+        }
 
-    .app img {
-      width: 88px;
-      height: 88px;
-      border-radius: 20px;
-      object-fit: cover;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-      background: rgba(0, 0, 0, 0.4);
-      transition: all 0.3s ease;
-      border: 2px solid rgba(255, 255, 255, 0.15);
-      margin-bottom: 8px;
-    }
+        .logo-text h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
 
-    .app:hover img {
-      box-shadow: 0 15px 35px rgba(0,0,0,0.7);
-      background: rgba(0, 0, 0, 0.5);
-      border-color: rgba(255, 105, 180, 0.4);
-      transform: scale(1.05);
-    }
+        .logo-text span {
+            font-size: 0.9rem;
+            color: var(--gray);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
 
-    .app span {
-      margin-top: 4px;
-      opacity: 0.95;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.7);
-      font-size: 15px;
-      font-weight: 500;
-      text-align: center;
-      line-height: 1.2;
-      max-width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
 
-    @media (max-width: 1024px) {
-      .apps-grid {
-        grid-template-columns: repeat(5, 110px);
-        gap: 25px;
-        max-width: 660px;
-      }
-    }
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 5px 0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
 
-    @media (max-width: 768px) {
-      .search-container {
-        width: 92vw;
-      }
-      .search-input {
-        height: 56px;
-        border-radius: 16px;
-        font-size: 18px;
-        padding: 0 60px 0 24px;
-      }
-      
-      .apps-grid {
-        grid-template-columns: repeat(4, 100px);
-        gap: 20px;
-        max-width: 480px;
-      }
-      
-      .app {
-        width: 100px;
-      }
-      
-      .app img {
-        width: 80px;
-        height: 80px;
-      }
-    }
+        .nav-links a:hover {
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+        }
 
-    @media (max-width: 600px) {
-      .title { font-size: 2.4rem; }
-      .logo { width: 60px; height: 60px; }
-      .clock { font-size: 13vw; }
-      .search-container {
-        width: 90vw;
-      }
-      .search-input {
-        height: 52px;
-        border-radius: 14px;
-        font-size: 17px;
-        padding: 0 50px 0 22px;
-      }
-      
-      .apps-grid {
-        grid-template-columns: repeat(3, 90px);
-        gap: 20px;
-        max-width: 330px;
-        margin-top: 10px;
-      }
-      
-      .app {
-        width: 90px;
-        padding: 10px 6px;
-      }
-      
-      .app img {
-        width: 72px;
-        height: 72px;
-        border-radius: 18px;
-      }
-      
-      .app span {
-        font-size: 14px;
-      }
-      
-      body::before {
-        background: rgba(0, 0, 0, 0.4);
-      }
-    }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s;
+            box-shadow: 0 0 5px var(--primary);
+        }
 
-    @media (max-width: 400px) {
-      .apps-grid {
-        grid-template-columns: repeat(3, 80px);
-        gap: 15px;
-        max-width: 270px;
-      }
-      
-      .app {
-        width: 80px;
-      }
-      
-      .app img {
-        width: 64px;
-        height: 64px;
-      }
-    }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
-    @media (min-width: 1200px) {
-      .search-container {
-        width: min(90vw, 920px);
-      }
-      
-      .apps-grid {
-        max-width: 1100px;
-        grid-template-columns: repeat(5, 120px);
-      }
-      
-      .app {
-        width: 120px;
-      }
-      
-      .app img {
-        width: 96px;
-        height: 96px;
-      }
-    }
-  </style>
+        /* Hero Section */
+        .hero {
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 60px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin: 0 auto 40px;
+            color: #adb5bd;
+            max-width: 800px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 
+                0 5px 15px rgba(255, 51, 102, 0.3),
+                0 0 20px rgba(102, 51, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 8px 25px rgba(255, 51, 102, 0.4),
+                0 0 30px rgba(102, 51, 255, 0.3);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Warning Box */
+        .warning {
+            background: rgba(255, 193, 7, 0.15);
+            border-left: 4px solid #ffc107;
+            padding: 25px;
+            margin: 50px 0;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .warning h3 {
+            color: #ffc107;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Screenshot Section */
+        .screenshot-section {
+            text-align: center;
+            margin: 80px 0;
+        }
+
+        .screenshot-container {
+            max-width: 800px;
+            margin: 40px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .screenshot {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .screenshot:hover {
+            transform: scale(1.02);
+        }
+
+        .screenshot-caption {
+            margin-top: 20px;
+            color: var(--gray);
+            font-style: italic;
+        }
+
+        /* Features */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 100px 0 60px;
+            color: var(--light);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 100px;
+        }
+
+        .feature-card {
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 35px;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(255, 51, 102, 0.1);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px rgba(255, 51, 102, 0.3);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--light);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Files Structure */
+        .files-structure {
+            background: rgba(15, 15, 26, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 35px;
+            margin: 60px 0;
+            font-family: 'Cascadia Code', 'Courier New', monospace;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .folder {
+            color: #4ec9b0;
+            margin-left: 20px;
+            text-shadow: 0 0 5px rgba(78, 201, 176, 0.3);
+        }
+
+        .file {
+            color: #9cdcfe;
+            margin-left: 40px;
+            text-shadow: 0 0 5px rgba(156, 220, 254, 0.3);
+        }
+
+        .comment {
+            color: #6a9955;
+            margin-left: 40px;
+            font-style: italic;
+            text-shadow: 0 0 5px rgba(106, 153, 85, 0.3);
+        }
+
+        /* Installation Steps */
+        .steps {
+            counter-reset: step-counter;
+            margin: 60px 0;
+        }
+
+        .step {
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 100px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .step:hover {
+            transform: translateX(10px);
+        }
+
+        .step::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.3rem;
+            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.3);
+        }
+
+        /* Download Section */
+        .download-section {
+            text-align: center;
+            padding: 80px;
+            background: rgba(15, 15, 26, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 100px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .download-btn {
+            background: rgba(26, 26, 46, 0.8);
+            border: 2px solid var(--primary);
+            color: var(--light);
+            padding: 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            min-width: 250px;
+            justify-content: flex-start;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .download-btn:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 
+                0 15px 35px rgba(255, 51, 102, 0.3),
+                0 0 20px rgba(255, 51, 102, 0.2);
+            border-color: transparent;
+        }
+
+        .download-btn i {
+            font-size: 1.5rem;
+        }
+
+        .file-size {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 80px 0 40px;
+            margin-top: 120px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-section h3 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(26, 26, 46, 0.8);
+            border-radius: 50%;
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 
+                0 8px 20px rgba(255, 51, 102, 0.3),
+                0 0 15px rgba(255, 51, 102, 0.2);
+            border-color: transparent;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+            font-size: 0.9rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content {
+                padding: 30px;
+            }
+
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .download-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .step {
+                padding-left: 80px;
+            }
+
+            .step::before {
+                left: 20px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+
+            .screenshot-container {
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <div class="clock" id="time">18:50</div>
-
-  <div class="brand">
-    <img src="logo.png" alt="Стринги Алисы" class="logo">
-    <h1 class="title">Стринги Алисы</h1>
-  </div>
-
-  <div class="search-container">
-    <form action="https://yandex.ru/search/" method="GET" target="_blank">
-      <input type="text" name="text" class="search-input" placeholder="Введите запрос или адрес" autocomplete="off" />
-    </form>
-  </div>
-
-  <div class="apps-container">
-    <div class="apps-grid">
-      <a href="https://yandex.com" class="app" target="_blank">
-        <img src="icons/yandex.png" alt="Yandex">
-        <span>Яндекс</span>
-      </a>
-      <a href="https://dzen.ru" class="app" target="_blank">
-        <img src="icons/yandex.png" alt="Дзен">
-        <span>Дзен</span>
-      </a>
-      <a href="https://mail.yandex.ru" class="app" target="_blank">
-        <img src="icons/mail.png" alt="Почта Яндекс">
-        <span>Яндекс Почта</span>
-      </a>
-      <a href="https://mail.yandex.ru/lite" class="app" target="_blank">
-        <img src="icons/mail.png" alt="Почта Лайт">
-        <span>Почта Лайт</span>
-      </a>
-      <a href="https://translate.yandex.ru" class="app" target="_blank">
-        <img src="icons/yandex.png" alt="Переводчик">
-        <span>Переводчик</span>
-      </a>
-      <a href="https://disk.yandex.ru" class="app" target="_blank">
-        <img src="icons/drive.png" alt="Диск">
-        <span>Диск</span>
-      </a>
-      <a href="https://music.yandex.ru" class="app" target="_blank">
-        <img src="icons/music.png" alt="Музыка">
-        <span>Музыка</span>
-      </a>
-      <a href="https://mail.ru" class="app" target="_blank">
-        <img src="icons/mail.png" alt="Mail.ru">
-        <span>Mail.ru</span>
-      </a>
-      <a href="https://vk.com" class="app" target="_blank">
-        <img src="icons/vk.png" alt="ВКонтакте">
-        <span>ВКонтакте</span>
-      </a>
-      <a href="https://youtube.com" class="app" target="_blank">
-        <img src="icons/youtube.png" alt="YouTube">
-        <span>YouTube</span>
-      </a>
+    <!-- Декоративные элементы -->
+    <div class="bg-pattern"></div>
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
     </div>
-  </div>
 
-  <script>
-    function updateTime() {
-      const now = new Date();
-      const h = String(now.getHours()).padStart(2, '0');
-      const m = String(now.getMinutes()).padStart(2, '0');
-      document.getElementById('time').textContent = `${h}:${m}`;
-    }
-    updateTime();
-    setInterval(updateTime, 1000);
+    <!-- Header -->
+<!--     <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Стринги Алисы</h1>
+                        <span>Яндекс Браузер без телеметрии</span>
+                    </div>
+                </div>
+                <nav class="nav-links">
+                    <a href="#about">О сборке</a>
+                    <a href="#screenshot">Скриншот</a>
+                    <a href="#features">Особенности</a>
+                    <a href="#download">Скачать</a>
+                    <a href="#future">Планы</a>
+                </nav>
+            </div>
+        </div>
+    </header> -->
 
-    document.querySelector('.search-input').focus();
-  </script>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content" style="
+            max-width: 1000px; 
+            margin: 0 auto;
+            background: 
+                linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.9)),
+                url('backgrounds/2.jpg') no-repeat center center;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        ">
+            
+            <!-- Градиентный акцент -->
+            <div style="
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, var(--primary), var(--secondary));
+                z-index: 1;
+            "></div>
+                <h2>Стринги Алисы</h2>
+                <p>Модифицированная сборка Яндекс Браузера с полным отключением телеметрии,<br>ненужных служб и сохранением приватности пользователя.</p>
+                <a href="#download" class="cta-button">
+                    <i class="fas fa-download"></i> Скачать сборку
+                </a>
+            </div>
+        </div>
+    </section>
 
+    <!-- Warning -->
+    <div class="container">
+        <div class="warning glass-effect">
+            <h3><i class="fas fa-exclamation-triangle"></i> Важное предупреждение!</h3>
+            <p>Перед установкой обязательно установите оригинальный Яндекс Браузер. Сделайте бэкап ваших данных, если вы им пользовались, потому что все пользовательские данные будут удалены вместе с оригинальным Яндекс Браузером.</p>
+        </div>
+    </div>
+
+    <!-- Screenshot Section -->
+    <section id="screenshot" class="container">
+        <h2 class="section-title">Скриншот программы</h2>
+        <div class="screenshot-section">
+            <div class="screenshot-container">
+                <img src="app.png" 
+                     alt="Скриншот программы Стринги Алисы" 
+                     class="screenshot">
+            </div>
+            <p class="screenshot-caption">Интерфейс браузера Стринги Алисы - лёгкий и компактный</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="container">
+        <h2 class="section-title">О сборке</h2>
+        <div class="steps">
+            <div class="step glass-effect">
+                <h3>Что такое Стринги Алисы?</h3>
+                <p>Это кастомная сборка Яндекс Браузера, из которой полностью удалена телеметрия, лишние службы и компоненты. Сборка полностью портативна и не оставляет следов в системе.</p>
+            </div>
+            <div class="step glass-effect">
+                <h3>Расположение</h3>
+                <p>Сборка находится в <code>C:\Apps\Alices-Thong</code> и не требует установки в системные папки. Вы можете переносить её на флешке или другом диске.</p>
+            </div>
+            <div class="step glass-effect">
+                <h3>Требования</h3>
+                <p>Для работы сборки необходимо предварительно установить оригинальный Яндекс Браузер, так как используются его основные компоненты.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Files Structure -->
+    <section class="container">
+        <h2 class="section-title">Структура сборки</h2>
+          <div class="feature-card glass-effect" style="
+            max-width: 800px; 
+            margin: 0 auto;
+            background: 
+                linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.9)),
+                url('backgrounds/6.jpg') no-repeat center center;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        ">
+            
+            <!-- Градиентный акцент -->
+            <div style="
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, var(--primary), var(--secondary));
+                z-index: 1;
+            "></div>
+            <div class="folder">C:\Apps\Alices-Thong\</div>
+            <div class="file">Install.exe</div>
+            <div class="comment">Установить сборку (требует оригинальный Яндекс Браузер)</div>
+            
+            <div class="file">Remove-Yandex.exe</div>
+            <div class="comment">Удалить оригинальный Яндекс Браузер</div>
+            
+            <div class="file">PostInstall.exe</div>
+            <div class="comment">Удалить телеметрию и службы Яндекс Браузера</div>
+            
+            <div class="file">Yandex.exe</div>
+            <div class="comment">Запустить сборку с кастомной стартовой страницей</div>
+            
+            <div class="folder">browser\</div>
+            <div class="comment">Lite-версия оригинального Яндекс Браузера</div>
+            
+            <div class="folder">USER_DATA\</div>
+            <div class="comment">Ваши данные браузера (закладки, история, пароли)</div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="container">
+        <h2 class="section-title">Особенности</h2>
+        <div class="features-grid">
+            <div class="feature-card glass-effect">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Без телеметрии</h3>
+                <p>Полное отключение всех видов телеметрии и сбора данных Яндексом.</p>
+            </div>
+            <div class="feature-card glass-effect">
+                <div class="feature-icon">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <h3>Оптимизация</h3>
+                <p>Удалены ненужные службы и компоненты для увеличения производительности.</p>
+            </div>
+            <div class="feature-card glass-effect">
+                <div class="feature-icon">
+                    <i class="fas fa-user-secret"></i>
+                </div>
+                <h3>Приватность</h3>
+                <p>Усиленная защита приватности и блокировка рекламных трекеров.</p>
+            </div>
+            <div class="feature-card glass-effect">
+                <div class="feature-icon">
+                    <i class="fas fa-portrait"></i>
+                </div>
+                <h3>Портативность</h3>
+                <p>Не требует установки, работает из любой папки на диске.</p>
+            </div>
+            <div class="feature-card glass-effect">
+                <div class="feature-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3>Быстрый запуск</h3>
+                <p>Убраны все задержки при запуске, связанные с проверкой обновлений.</p>
+            </div>
+            <div class="feature-card glass-effect">
+                <div class="feature-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>Кастомная стартовая</h3>
+                <p>Специальная стартовая страница без рекламы и рекомендаций.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="container">
+        <div class="download-section glass-effect" style="
+            max-width: 1000px; 
+            margin: 0 auto;
+            background: 
+                linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.9)),
+                url('backgrounds/7.jpg') no-repeat center center;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        ">
+            
+            <!-- Градиентный акцент -->
+            <div style="
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, var(--primary), var(--secondary));
+                z-index: 1;
+            "></div>
+            <h2 class="section-title">Скачать сборку</h2>
+
+            <p>Скачайте установщик Стринги Алисы - всего менее 1 МБ!</p>
+            
+            <div class="download-buttons">
+                <a href="https://github.com/anton18-png/Alices-thong/releases/download/v1.0.0/Alices-Thong.exe" 
+                   class="download-btn" 
+                   download="Alices-Thong.exe">
+                    <i class="fas fa-file-download"></i>
+                    <div>
+                        <strong>Стринги Алисы v1.0</strong>
+                        <span class="file-size">EXE • менее 1 МБ</span>
+                    </div>
+                </a>
+                
+                <a href="https://browser.yandex.ru/" 
+                   target="_blank" 
+                   class="download-btn">
+                    <i class="fas fa-download"></i>
+                    <div>
+                        <strong>Оригинальный Яндекс</strong>
+                        <span class="file-size">Сначала установите это</span>
+                    </div>
+                </a>
+                
+                <a href="https://github.com/anton18-png/Alices-thong" 
+                   target="_blank" 
+                   class="download-btn">
+                    <i class="fab fa-github"></i>
+                    <div>
+                        <strong>GitHub Репозиторий</strong>
+                        <span class="file-size">Исходный код</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Plans -->
+    <section id="future" class="container">
+        <h2 class="section-title">Планы на будущее</h2>
+        <div class="feature-card glass-effect" style="
+            max-width: 800px; 
+            margin: 0 auto;
+            background: 
+                linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.9)),
+                url('backgrounds/1.jpg') no-repeat center center;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        ">
+            
+            <!-- Градиентный акцент -->
+            <div style="
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, var(--primary), var(--secondary));
+                z-index: 1;
+            "></div>
+            
+            <!-- Контент -->
+            <div style="position: relative; z-index: 2; padding: 35px;">
+                <div class="feature-icon">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <h3 style="
+                    color: white;
+                    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+                    font-size: 1.8rem;
+                ">Сборка Atom от Mail.ru</h3>
+                <p style="
+                    color: #e9ecef;
+                    line-height: 1.8;
+                    font-size: 1.1rem;
+                    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+                ">
+                    В будущем планирую создать аналогичную сборку для браузера Atom от Mail.ru 
+                    с полным отключением телеметрии и оптимизацией производительности.
+                </p>
+                <div style="
+                    margin-top: 25px;
+                    padding: 15px;
+                    background: rgba(255, 255, 255, 0.05);
+                    border-radius: 8px;
+                    border-left: 3px solid var(--secondary);
+                ">
+                    <p style="
+                        margin: 0;
+                        color: var(--gray);
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        font-size: 0.95rem;
+                    ">
+                        <i class="fas fa-bell" style="color: var(--primary);"></i>
+                        Следите за обновлениями в Telegram канале и на GitHub!
+                    </p>
+                </div>
+                
+                <!-- Кнопки для ссылок -->
+                <div style="
+                    margin-top: 25px;
+                    display: flex;
+                    gap: 15px;
+                    flex-wrap: wrap;
+                ">
+                    <a href="https://t.me/all_tweaker" 
+                       target="_blank" 
+                       style="
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 8px;
+                            background: rgba(102, 51, 255, 0.2);
+                            color: white;
+                            padding: 10px 20px;
+                            border-radius: 8px;
+                            text-decoration: none;
+                            transition: all 0.3s;
+                            border: 1px solid rgba(102, 51, 255, 0.3);
+                       "
+                       onmouseover="this.style.background='rgba(102, 51, 255, 0.4)'; this.style.transform='translateY(-2px)';"
+                       onmouseout="this.style.background='rgba(102, 51, 255, 0.2)'; this.style.transform='translateY(0)';">
+                        <i class="fab fa-telegram"></i>
+                        Telegram канал
+                    </a>
+                    
+                    <a href="https://github.com/anton18-png/Alices-thong" 
+                       target="_blank" 
+                       style="
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 8px;
+                            background: rgba(255, 255, 255, 0.1);
+                            color: white;
+                            padding: 10px 20px;
+                            border-radius: 8px;
+                            text-decoration: none;
+                            transition: all 0.3s;
+                            border: 1px solid rgba(255, 255, 255, 0.2);
+                       "
+                       onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(-2px)';"
+                       onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.transform='translateY(0)';">
+                        <i class="fab fa-github"></i>
+                        GitHub репозиторий
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+<br><br><br><br><br><br>
+<!-- Footer -->
+<!-- <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Стринги Алисы</h3>
+                <p>Модифицированная сборка Яндекс Браузера<br>для тех, кто ценит приватность.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Ссылки</h3>
+                <p><a href="#about" style="color: var(--light); text-decoration: none; transition: color 0.3s;" 
+                   onmouseover="this.style.color='var(--primary)';" 
+                   onmouseout="this.style.color='var(--light)';">О сборке</a></p>
+                <p><a href="#screenshot" style="color: var(--light); text-decoration: none; transition: color 0.3s;"
+                   onmouseover="this.style.color='var(--primary)';" 
+                   onmouseout="this.style.color='var(--light)';">Скриншот</a></p>
+                <p><a href="#download" style="color: var(--light); text-decoration: none; transition: color 0.3s;"
+                   onmouseover="this.style.color='var(--primary)';" 
+                   onmouseout="this.style.color='var(--light)';">Скачать</a></p>
+                <p><a href="#future" style="color: var(--light); text-decoration: none; transition: color 0.3s;"
+                   onmouseover="this.style.color='var(--primary)';" 
+                   onmouseout="this.style.color='var(--light)';">Планы</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p>GitHub: <a href="https://github.com/anton18-png/Alices-thong" target="_blank" 
+                   style="color: var(--primary); text-shadow: 0 0 5px rgba(255, 51, 102, 0.3); transition: all 0.3s;"
+                   onmouseover="this.style.textShadow='0 0 10px rgba(255, 51, 102, 0.6)'; this.style.color='#ff6680';"
+                   onmouseout="this.style.textShadow='0 0 5px rgba(255, 51, 102, 0.3)'; this.style.color='var(--primary)';">anton18-png/Alices-thong</a></p>
+                <p>Telegram: <a href="https://t.me/all_tweaker" target="_blank" 
+                   style="color: var(--primary); text-shadow: 0 0 5px rgba(255, 51, 102, 0.3); transition: all 0.3s;"
+                   onmouseover="this.style.textShadow='0 0 10px rgba(255, 51, 102, 0.6)'; this.style.color='#ff6680';"
+                   onmouseout="this.style.textShadow='0 0 5px rgba(255, 51, 102, 0.3)'; this.style.color='var(--primary)';">@all_tweaker</a></p>
+                
+                <div class="social-links">
+                    <a href="https://github.com/anton18-png/Alices-thong" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://t.me/all_tweaker" target="_blank" class="social-link">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>© 2026 Стринги Алисы. Неофициальная модификация Яндекс Браузера.</p>
+            <p style="margin-top: 10px;">Все права на оригинальный браузер принадлежат Яндекс.</p>
+        </div>
+    </div>
+</footer> -->
 </body>
 </html>
