@@ -757,7 +757,7 @@
     <!-- Files Structure -->
     <section class="container">
         <h2 class="section-title">Структура сборки</h2>
-          <div class="feature-card glass-effect" style="
+        <div class="feature-card glass-effect" style="
             max-width: 800px; 
             margin: 0 auto;
             background: 
@@ -784,7 +784,7 @@
             <div class="comment">Установить сборку (требует оригинальный Яндекс Браузер)</div>
             
             <div class="file">Remove-Yandex.exe</div>
-            <div class="comment">Удалить оригинальный Яндекс Браузер</div>
+            <div class="comment">Удалить оригинальный Яндекс Браузер - не оставляет следов в файлах и реестре</div>
             
             <div class="file">PostInstall.exe</div>
             <div class="comment">Удалить телеметрию и службы Яндекс Браузера</div>
@@ -797,6 +797,16 @@
             
             <div class="folder">USER_DATA\</div>
             <div class="comment">Ваши данные браузера (закладки, история, пароли)</div>
+            
+            <!-- Добавляем важное примечание -->
+            <div style="margin-top: 25px; padding: 15px; background: rgba(255, 51, 102, 0.1); border-radius: 8px; border-left: 3px solid var(--primary);">
+                <p style="margin: 0; color: #ffccd5; font-size: 0.95rem;">
+                    <i class="fas fa-check-circle" style="color: var(--primary); margin-right: 8px;"></i>
+                    <strong>Важно:</strong> При совместном использовании Remove-Yandex.exe и PostInstall.exe 
+                    система полностью очищается от всех следов Яндекс Браузера - ни файлов, 
+                    ни записей в реестре, ни фоновых служб не остаётся.
+                </p>
+            </div>
         </div>
     </section>
 
