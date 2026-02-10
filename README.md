@@ -4,6 +4,7 @@
 ![Version](https://img.shields.io/badge/Версия-1.0.0-blue?style=for-the-badge)
 ![License](https://img.shields.io/badge/Лицензия-MIT-green?style=for-the-badge)
 ![Windows](https://img.shields.io/badge/Windows-10%2B-0078D6?style=for-the-badge&logo=windows)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/scode18/All-Tweaker/total?style=for-the-badge)
 
 **Модифицированная портативная сборка Яндекс Браузера с полным отключением телеметрии, ненужных служб и сохранением приватности пользователя.**
 
