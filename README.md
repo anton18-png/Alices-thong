@@ -75,6 +75,8 @@ C:\Apps\Alices-Thong\
 └── 📁 USER_DATA/                 # Данные пользователя
 ```
 
+<img width="811" height="529" alt="image" src="https://github.com/user-attachments/assets/d46bdb07-b93c-490b-94ea-7c399ba8c09f" />
+
 ## 🔧 Инструменты
 
 ### `Install.exe`
