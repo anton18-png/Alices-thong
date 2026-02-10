@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Стринги Алисы</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background-image: url('backgrounds/2.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #ffffff;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5vh;
+      position: relative;
+    }
+
+    /* Темный оверлей поверх фона для контраста */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: -1;
+    }
+
+    .clock {
+      font-size: 9vh;
+      font-weight: 300;
+      letter-spacing: -2px;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin: 1vh 0 3vh;
+    }
+
+    .logo {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 20px rgba(255,105,180,0.5));
+    }
+
+    .title {
+      font-size: 3rem;
+      font-weight: 700;
+      font-style: italic;
+      color: #ff69b4;
+      letter-spacing: 1.5px;
+      text-shadow: 
+        0 0 15px rgba(255,105,180,0.7),
+        0 4px 12px rgba(199,21,133,0.6);
+    }
+
+    .search-container {
+      width: min(95vw, 880px);
+      position: relative;
+      margin: 0 auto;
+    }
+
+    .search-input {
+      width: 100%;
+      height: 60px;
+      border: none;
+      border-radius: 18px;
+      padding: 0 70px 0 30px;
+      font-size: 19px;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px) brightness(0.8);
+      color: white;
+      outline: none;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+      transition: all 0.25s;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .search-input:focus {
+      background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 10px 50px rgba(0,0,0,0.8);
+      transform: translateY(-1px);
+      border-color: rgba(255, 105, 180, 0.3);
+    }
+
+    .search-input::placeholder {
+      color: rgba(255,255,255,0.7);
+      font-size: 18px;
+    }
+
+    .apps-container {
+      width: 100%;
+      max-width: 1000px;
+      margin-top: 10px;
+    }
+
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 30px;
+      justify-content: center;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+
+    .app {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: white;
+      width: 110px;
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border-radius: 16px;
+      padding: 12px 8px;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .app.hidden {
+      display: none;
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    .app:hover {
+      transform: translateY(-5px) scale(1.05);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .app img {
+      width: 88px;
+      height: 88px;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+      background: rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      margin-bottom: 8px;
+    }
+
+    .app:hover img {
+      box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+      background: rgba(0, 0, 0, 0.5);
+      border-color: rgba(255, 105, 180, 0.4);
+      transform: scale(1.05);
+    }
+
+    .app span {
+      margin-top: 4px;
+      opacity: 0.95;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+      font-size: 15px;
+      font-weight: 500;
+      text-align: center;
+      line-height: 1.2;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 1024px) {
+      .apps-grid {
+        grid-template-columns: repeat(5, 110px);
+        gap: 25px;
+        max-width: 660px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .search-container {
+        width: 92vw;
+      }
+      .search-input {
+        height: 56px;
+        border-radius: 16px;
+        font-size: 18px;
+        padding: 0 60px 0 24px;
+      }
+      
+      .apps-grid {
+        grid-template-columns: repeat(4, 100px);
+        gap: 20px;
+        max-width: 480px;
+      }
+      
+      .app {
+        width: 100px;
+      }
+      
+      .app img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .title { font-size: 2.4rem; }
+      .logo { width: 60px; height: 60px; }
+      .clock { font-size: 13vw; }
+      .search-container {
+        width: 90vw;
+      }
+      .search-input {
+        height: 52px;
+        border-radius: 14px;
+        font-size: 17px;
+        padding: 0 50px 0 22px;
+      }
+      
+      .apps-grid {
+        grid-template-columns: repeat(3, 90px);
+        gap: 20px;
+        max-width: 330px;
+        margin-top: 10px;
+      }
+      
+      .app {
+        width: 90px;
+        padding: 10px 6px;
+      }
+      
+      .app img {
+        width: 72px;
+        height: 72px;
+        border-radius: 18px;
+      }
+      
+      .app span {
+        font-size: 14px;
+      }
+      
+      body::before {
+        background: rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    @media (max-width: 400px) {
+      .apps-grid {
+        grid-template-columns: repeat(3, 80px);
+        gap: 15px;
+        max-width: 270px;
+      }
+      
+      .app {
+        width: 80px;
+      }
+      
+      .app img {
+        width: 64px;
+        height: 64px;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .search-container {
+        width: min(90vw, 920px);
+      }
+      
+      .apps-grid {
+        max-width: 1100px;
+        grid-template-columns: repeat(5, 120px);
+      }
+      
+      .app {
+        width: 120px;
+      }
+      
+      .app img {
+        width: 96px;
+        height: 96px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="clock" id="time">18:50</div>
+
+  <div class="brand">
+    <img src="logo.png" alt="Стринги Алисы" class="logo">
+    <h1 class="title">Стринги Алисы</h1>
+  </div>
+
+  <div class="search-container">
+    <form action="https://yandex.ru/search/" method="GET" target="_blank">
+      <input type="text" name="text" class="search-input" placeholder="Введите запрос или адрес" autocomplete="off" />
+    </form>
+  </div>
+
+  <div class="apps-container">
+    <div class="apps-grid">
+      <a href="https://yandex.com" class="app" target="_blank">
+        <img src="icons/yandex.png" alt="Yandex">
+        <span>Яндекс</span>
+      </a>
+      <a href="https://dzen.ru" class="app" target="_blank">
+        <img src="icons/yandex.png" alt="Дзен">
+        <span>Дзен</span>
+      </a>
+      <a href="https://mail.yandex.ru" class="app" target="_blank">
+        <img src="icons/mail.png" alt="Почта Яндекс">
+        <span>Яндекс Почта</span>
+      </a>
+      <a href="https://mail.yandex.ru/lite" class="app" target="_blank">
+        <img src="icons/mail.png" alt="Почта Лайт">
+        <span>Почта Лайт</span>
+      </a>
+      <a href="https://translate.yandex.ru" class="app" target="_blank">
+        <img src="icons/yandex.png" alt="Переводчик">
+        <span>Переводчик</span>
+      </a>
+      <a href="https://disk.yandex.ru" class="app" target="_blank">
+        <img src="icons/drive.png" alt="Диск">
+        <span>Диск</span>
+      </a>
+      <a href="https://music.yandex.ru" class="app" target="_blank">
+        <img src="icons/music.png" alt="Музыка">
+        <span>Музыка</span>
+      </a>
+      <a href="https://mail.ru" class="app" target="_blank">
+        <img src="icons/mail.png" alt="Mail.ru">
+        <span>Mail.ru</span>
+      </a>
+      <a href="https://vk.com" class="app" target="_blank">
+        <img src="icons/vk.png" alt="ВКонтакте">
+        <span>ВКонтакте</span>
+      </a>
+      <a href="https://youtube.com" class="app" target="_blank">
+        <img src="icons/youtube.png" alt="YouTube">
+        <span>YouTube</span>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function updateTime() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      document.getElementById('time').textContent = `${h}:${m}`;
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+
+    document.querySelector('.search-input').focus();
+  </script>
+
+</body>
+</html>
