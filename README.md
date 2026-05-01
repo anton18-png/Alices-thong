@@ -1,4 +1,4 @@
-# 🩲 Стринги Алисы - Портативный Яндекс Браузер без телеметрии
+# Стринги Алисы - Портативный Яндекс Браузер без телеметрии
 
 <img width="1920" height="1037" alt="preview" src="https://github.com/user-attachments/assets/02515777-15a2-42d5-8695-29564b6183b0" />
 
@@ -56,10 +56,6 @@ xcopy "%sourceFolder%\*" "%destFolder%\" /S /E /Y /H
 rem Запускаем очистку от телеметрии
 cd app
 CleanYandex.bat
-
-cd ..
-rem Запускаем браузер
-start "" "StartAlicesThong.exe"
 ```
 
 **Что произойдёт после запуска:**
