@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Стринги Алисы - Яндекс Браузер без телеметрии</title>
+    <title>Стринги Алисы — Яндекс Браузер, которого Яндекс не увидит</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -32,15 +32,6 @@
             color: var(--light);
             min-height: 100vh;
             line-height: 1.6;
-            position: relative;
-        }
-
-        .glass-effect {
-            background: rgba(26, 26, 46, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
         .bg-pattern {
@@ -56,56 +47,12 @@
             z-index: -1;
         }
 
-/*        .floating-elements {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .floating-element {
-            position: absolute;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            opacity: 0.1;
-            animation: float 20s infinite linear;
-        }
-
-        .floating-element:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            top: 10%;
-            left: 5%;
-            animation-delay: 0s;
-        }
-
-        .floating-element:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            top: 60%;
-            right: 10%;
-            animation-delay: -5s;
-        }
-
-        .floating-element:nth-child(3) {
-            width: 150px;
-            height: 150px;
-            bottom: 20%;
-            left: 20%;
-            animation-delay: -10s;
-        }*/
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            33% {
-                transform: translateY(-30px) rotate(120deg);
-            }
-            66% {
-                transform: translateY(30px) rotate(240deg);
-            }
+        .glass-effect {
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
         .container {
@@ -114,7 +61,6 @@
             padding: 0 20px;
         }
 
-        /* Header */
         header {
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(15px);
@@ -149,13 +95,11 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .logo-text span {
             font-size: 0.9rem;
             color: var(--gray);
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         .nav-links {
@@ -170,12 +114,10 @@
             transition: all 0.3s;
             position: relative;
             padding: 5px 0;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         .nav-links a:hover {
             color: var(--primary);
-            text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
         }
 
         .nav-links a::after {
@@ -187,19 +129,15 @@
             height: 2px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             transition: width 0.3s;
-            box-shadow: 0 0 5px var(--primary);
         }
 
         .nav-links a:hover::after {
             width: 100%;
         }
 
-        /* Hero Section */
         .hero {
             padding: 120px 0;
             text-align: center;
-            position: relative;
-            z-index: 1;
         }
 
         .hero-content {
@@ -208,11 +146,23 @@
             padding: 60px;
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
             max-width: 900px;
             margin: 0 auto;
+            background-image: url('backgrounds/2.jpg');
+            background-size: cover;
+            background-blend-mode: overlay;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content > div:first-child {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            z-index: 1;
         }
 
         .hero h2 {
@@ -222,7 +172,6 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .hero p {
@@ -230,7 +179,6 @@
             margin: 0 auto 40px;
             color: #adb5bd;
             max-width: 800px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         .cta-button {
@@ -243,56 +191,177 @@
             font-weight: 600;
             font-size: 1.1rem;
             transition: all 0.3s;
-            box-shadow: 
-                0 5px 15px rgba(255, 51, 102, 0.3),
-                0 0 20px rgba(102, 51, 255, 0.2);
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.3);
         }
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 
-                0 8px 25px rgba(255, 51, 102, 0.4),
-                0 0 30px rgba(102, 51, 255, 0.3);
+            box-shadow: 0 8px 25px rgba(255, 51, 102, 0.4);
         }
 
-        .cta-button::before {
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 100px 0 60px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 100px;
+        }
+
+        .feature-card {
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 35px;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .comparison-table {
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 60px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-table table {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
+            border-collapse: collapse;
         }
 
-        .cta-button:hover::before {
-            left: 100%;
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Warning Box */
-        .warning {
-            background: rgba(255, 193, 7, 0.15);
-            border-left: 4px solid #ffc107;
-            padding: 25px;
-            margin: 50px 0;
-            border-radius: 10px;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        .comparison-table th {
+            background: linear-gradient(90deg, rgba(255, 51, 102, 0.2), rgba(102, 51, 255, 0.2));
+            color: var(--primary);
+            font-size: 1.1rem;
         }
 
-        .warning h3 {
-            color: #ffc107;
-            margin-bottom: 10px;
+        .comparison-table td:first-child,
+        .comparison-table th:first-child {
+            font-weight: bold;
+        }
+
+        .yes {
+            color: #4ec9b0;
+        }
+
+        .no {
+            color: #f48771;
+        }
+
+        .install-steps {
+            counter-reset: step-counter;
+            margin: 60px 0;
+        }
+
+        .step {
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 100px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .step::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 10px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.3rem;
         }
 
-        /* Screenshot Section */
+        .code-block {
+            background: rgba(15, 15, 26, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            border-left: 3px solid var(--primary);
+        }
+
+        .code-block code {
+            font-family: 'Courier New', monospace;
+            color: #9cdcfe;
+        }
+
+        .file-tree {
+            background: rgba(15, 15, 26, 0.8);
+            border-radius: 15px;
+            padding: 35px;
+            font-family: 'Courier New', monospace;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .folder {
+            color: #4ec9b0;
+        }
+
+        .file {
+            color: #9cdcfe;
+        }
+
+        .comment {
+            color: #6a9955;
+            font-style: italic;
+        }
+
         .screenshot-section {
             text-align: center;
             margin: 80px 0;
@@ -324,173 +393,25 @@
             font-style: italic;
         }
 
-        /* Features */
-        .section-title {
+        .download-section {
             text-align: center;
-            font-size: 2.5rem;
-            margin: 100px 0 60px;
-            color: var(--light);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            position: relative;
-            padding-bottom: 20px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 2px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 100px;
-        }
-
-        .feature-card {
-            background: rgba(26, 26, 46, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 35px;
-            transition: all 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            padding: 60px;
+            border-radius: 20px;
+            margin: 100px 0;
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
-        .feature-card::before {
+        .download-section::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 4px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transform: scaleX(0);
-            transition: transform 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 
-                0 15px 40px rgba(0, 0, 0, 0.3),
-                0 0 20px rgba(255, 51, 102, 0.1);
-        }
-
-        .feature-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .feature-icon {
-            font-size: 2.8rem;
-            color: var(--primary);
-            margin-bottom: 25px;
-            text-shadow: 0 0 15px rgba(255, 51, 102, 0.3);
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--light);
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Files Structure */
-        .files-structure {
-            background: rgba(15, 15, 26, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 35px;
-            margin: 60px 0;
-            font-family: 'Cascadia Code', 'Courier New', monospace;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 
-                0 10px 30px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }
-
-        .folder {
-            color: #4ec9b0;
-            margin-left: 20px;
-            text-shadow: 0 0 5px rgba(78, 201, 176, 0.3);
-        }
-
-        .file {
-            color: #9cdcfe;
-            margin-left: 40px;
-            text-shadow: 0 0 5px rgba(156, 220, 254, 0.3);
-        }
-
-        .comment {
-            color: #6a9955;
-            margin-left: 40px;
-            font-style: italic;
-            text-shadow: 0 0 5px rgba(106, 153, 85, 0.3);
-        }
-
-        /* Installation Steps */
-        .steps {
-            counter-reset: step-counter;
-            margin: 60px 0;
-        }
-
-        .step {
-            background: rgba(26, 26, 46, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 25px;
-            position: relative;
-            padding-left: 100px;
-            border-left: 4px solid var(--primary);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
-        }
-
-        .step:hover {
-            transform: translateX(10px);
-        }
-
-        .step::before {
-            counter-increment: step-counter;
-            content: counter(step-counter);
-            position: absolute;
-            left: 30px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.3rem;
-            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.3);
-        }
-
-        /* Download Section */
-        .download-section {
-            text-align: center;
-            padding: 80px;
-            background: rgba(15, 15, 26, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            margin: 100px 0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            z-index: 1;
         }
 
         .download-buttons {
@@ -513,18 +434,11 @@
             align-items: center;
             gap: 15px;
             min-width: 250px;
-            justify-content: flex-start;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
 
         .download-btn:hover {
             background: var(--primary);
             transform: translateY(-5px);
-            box-shadow: 
-                0 15px 35px rgba(255, 51, 102, 0.3),
-                0 0 20px rgba(255, 51, 102, 0.2);
-            border-color: transparent;
         }
 
         .download-btn i {
@@ -533,74 +447,110 @@
 
         .file-size {
             display: block;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--gray);
             margin-top: 5px;
         }
 
-        /* Footer */
+        .future-card {
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 45px;
+            text-align: center;
+            margin: 60px 0;
+            background-image: url('backgrounds/1.jpg');
+            background-size: cover;
+            background-blend-mode: overlay;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .future-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            z-index: 1;
+        }
+
         footer {
             background: rgba(0, 0, 0, 0.8);
-            padding: 80px 0 40px;
-            margin-top: 120px;
+            padding: 60px 0 30px;
+            margin-top: 100px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 50px;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
 
         .footer-section h3 {
             color: var(--primary);
-            margin-bottom: 25px;
-            font-size: 1.3rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
         }
 
         .social-links {
             display: flex;
             gap: 15px;
-            margin-top: 25px;
+            margin-top: 20px;
         }
 
         .social-link {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             background: rgba(26, 26, 46, 0.8);
             border-radius: 50%;
             color: var(--light);
             text-decoration: none;
             transition: all 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .social-link:hover {
             background: var(--primary);
-            transform: translateY(-3px) scale(1.1);
-            box-shadow: 
-                0 8px 20px rgba(255, 51, 102, 0.3),
-                0 0 15px rgba(255, 51, 102, 0.2);
-            border-color: transparent;
+            transform: scale(1.1);
         }
 
         .copyright {
             text-align: center;
-            padding-top: 40px;
+            padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--gray);
             font-size: 0.9rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
-        /* Responsive */
+        .structure-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.9)), url('folder.png') no-repeat center center;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 35px;
+        }
+
+        .structure-card > div:first-child {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            z-index: 1;
+        }
+
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -620,16 +570,6 @@
                 padding: 30px;
             }
 
-            .download-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .download-btn {
-                width: 100%;
-                max-width: 300px;
-            }
-
             .step {
                 padding-left: 80px;
             }
@@ -638,75 +578,50 @@
                 left: 20px;
                 width: 40px;
                 height: 40px;
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
 
-            .screenshot-container {
-                max-width: 100%;
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Декоративные элементы -->
     <div class="bg-pattern"></div>
-    <div class="floating-elements">
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-    </div>
 
-    <!-- Header -->
-<!--     <header>
+    <header>
         <div class="container">
             <div class="header-content">
                 <div class="logo">
                     <div class="logo-icon">
-                        <i class="fas fa-lock"></i>
+                        <i class="fas fa-skull"></i>
                     </div>
                     <div class="logo-text">
                         <h1>Стринги Алисы</h1>
-                        <span>Яндекс Браузер без телеметрии</span>
+                        <span>Яндекс Браузер, которого Яндекс не увидит</span>
                     </div>
                 </div>
                 <nav class="nav-links">
                     <a href="#about">О сборке</a>
+                    <a href="#comparison">Сравнение</a>
+                    <a href="#install">Установка</a>
                     <a href="#screenshot">Скриншот</a>
                     <a href="#features">Особенности</a>
                     <a href="#download">Скачать</a>
-                    <a href="#future">Планы</a>
                 </nav>
             </div>
         </div>
-    </header> -->
+    </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content" style="
-            max-width: 1000px; 
-            margin: 0 auto;
-            background: 
-                linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.9)),
-                url('backgrounds/2.jpg') no-repeat center center;
-            background-size: cover;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        ">
-            
-            <!-- Градиентный акцент -->
-            <div style="
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 4px;
-                background: linear-gradient(90deg, var(--primary), var(--secondary));
-                z-index: 1;
-            "></div>
+            <div class="hero-content">
+                <div></div>
                 <h2>Стринги Алисы</h2>
-                <p>Модифицированная сборка Яндекс Браузера с полным отключением телеметрии,<br>ненужных служб и сохранением приватности пользователя.</p>
+                <p><strong>«Яндекс не узнает, что ты здесь был»</strong></p>
+                <p style="font-size: 1rem; margin-bottom: 30px;">Полностью портативная версия Яндекс Браузера с отключением телеметрии, служб обновления и фоновой активности</p>
                 <a href="#download" class="cta-button">
                     <i class="fas fa-download"></i> Скачать сборку
                 </a>
@@ -714,384 +629,153 @@
         </div>
     </section>
 
-    <!-- Warning -->
     <div class="container">
-        <div class="warning glass-effect">
-            <h3><i class="fas fa-exclamation-triangle"></i> Важное предупреждение!</h3>
-            <p>Перед установкой обязательно установите оригинальный Яндекс Браузер. Сделайте бэкап ваших данных, если вы им пользовались, потому что все пользовательские данные будут удалены вместе с оригинальным Яндекс Браузером.</p>
+        <div class="glass-effect" style="padding: 25px; margin: 30px 0; border-left: 4px solid #ffc107;">
+            <h3 style="color: #ffc107;"><i class="fas fa-exclamation-triangle"></i> ВАЖНОЕ ПРЕДУПРЕЖДЕНИЕ</h3>
+            <p>Перед установкой сборки необходимо установить оригинальный Яндекс Браузер! Сделайте бэкап ваших данных, если вы им пользовались.</p>
         </div>
     </div>
 
-    <!-- Screenshot Section -->
+    <section id="about" class="container">
+        <h2 class="section-title">Что такое Стринги Алисы?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-skull"></i></div>
+                <h3>Смерть телеметрии</h3>
+                <p>Полное отключение всех видов сбора данных. Яндекс не узнает, какие сайты вы посещаете, какие настройки используете и как долго работаете.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-ghost"></i></div>
+                <h3>Невидимость в системе</h3>
+                <p>После закрытия браузера не остаётся никаких следов — ни фоновых процессов, ни записей в реестре, ни служб в системе.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                <h3>Максимальная скорость</h3>
+                <p>Удалены все обновления, проверки лицензий и фоновые задачи. Браузер запускается мгновенно и работает на 100% мощности вашего ПК.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                <h3>Нейросети работают</h3>
+                <p>В отличие от многих "облегчённых" сборок, здесь сохранены Алиса, Нейроредактор, перевод видео и другие нейроинструменты.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-sd-card"></i></div>
+                <h3>Портативность</h3>
+                <p>Носить с собой на флешке. Работает на любом компьютере. Ваши данные всегда с вами.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-shield"></i></div>
+                <h3>Убийца слежки</h3>
+                <p>Блокировка всех телеметрических доменов через hosts, удаление служб YandexBrowserService, YandexUpdaterService и других.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="comparison" class="container">
+        <h2 class="section-title">Сравнение с обычным Яндекс Браузером</h2>
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr><th>Характеристика</th><th>Обычный Яндекс Браузер</th><th>Стринги Алисы</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Телеметрия</td><td class="no">✅ Шлёт статистику</td><td class="yes">🚫 Полностью заблокирована</td></tr>
+                    <tr><td>Фоновая работа</td><td class="no">✅ Висит в фоне</td><td class="yes">🚫 Убивается при закрытии</td></tr>
+                    <tr><td>Обновления</td><td class="no">✅ Автоматические</td><td class="yes">🚫 Вырваны с корнем</td></tr>
+                    <tr><td>Службы в системе</td><td class="no">✅ Живут постоянно</td><td class="yes">🚫 Удалены</td></tr>
+                    <tr><td>metricsid</td><td class="no">✅ Уникальный ID</td><td class="yes">🚫 Обнулён после каждого запуска</td></tr>
+                    <tr><td>Скриншоты</td><td class="no">✅ Разрешены</td><td class="yes">🚫 Отключены</td></tr>
+                    <tr><td>Восстановление вкладок</td><td class="no">✅ Восстанавливает</td><td class="yes">🚫 Сессии вычищаются</td></tr>
+                    <tr><td>Портативность</td><td class="no">✅ Требует установки</td><td class="yes">✅ Работает с флешки</td></tr>
+                    <tr><td>Алиса / Нейросети</td><td class="yes">✅ Работают</td><td class="yes">✅ Работают</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
     <section id="screenshot" class="container">
         <h2 class="section-title">Скриншот программы</h2>
         <div class="screenshot-section">
             <div class="screenshot-container">
-                <img src="app.png" 
-                     alt="Скриншот программы Стринги Алисы" 
-                     class="screenshot">
-<!--                 <img src="folder.png" 
-                     alt="Скриншот программы Стринги Алисы" 
-                     class="screenshot"> -->
+                <img src="app.png" alt="Скриншот программы Стринги Алисы" class="screenshot">
             </div>
             <p class="screenshot-caption">Интерфейс браузера Стринги Алисы - лёгкий и компактный</p>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="container">
-        <h2 class="section-title">О сборке</h2>
-        <div class="steps">
-            <div class="step glass-effect">
-                <h3>Что такое Стринги Алисы?</h3>
-                <p>Это кастомная сборка Яндекс Браузера, из которой полностью удалена телеметрия, лишние службы и компоненты. Сборка полностью портативна и не оставляет следов в системе.</p>
-            </div>
-            <div class="step glass-effect">
-                <h3>Расположение</h3>
-                <p>Сборка находится в <code>C:\Apps\Alices-Thong</code> и не требует установки в системные папки. Вы можете переносить её на флешке или другом диске.</p>
-            </div>
-            <div class="step glass-effect">
-                <h3>Требования</h3>
-                <p>Для работы сборки необходимо предварительно установить оригинальный Яндекс Браузер, так как используются его основные компоненты.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Files Structure -->
     <section class="container">
         <h2 class="section-title">Структура сборки</h2>
-        <div class="feature-card glass-effect" style="
-            max-width: 800px; 
-            margin: 0 auto;
-            background: 
-                linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.9)),
-                url('folder.png') no-repeat center center;
-            background-size: cover;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        ">
-            
-            <!-- Градиентный акцент -->
-            <div style="
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 4px;
-                background: linear-gradient(90deg, var(--primary), var(--secondary));
-                z-index: 1;
-            "></div>
-            <div class="folder">C:\Apps\Alices-Thong\</div>
-            <div class="file">Install.exe</div>
-            <div class="comment">Установить сборку (требует оригинальный Яндекс Браузер)</div>
-            
-            <div class="file">Remove-Yandex.exe</div>
-            <div class="comment">Удалить оригинальный Яндекс Браузер - не оставляет следов в файлах и реестре</div>
-            
-            <div class="file">PostInstall.exe</div>
-            <div class="comment">Удалить телеметрию и службы Яндекс Браузера</div>
-            
-            <div class="file">Yandex.exe</div>
-            <div class="comment">Запустить сборку с кастомной стартовой страницей</div>
-            
-            <div class="folder">browser\</div>
-            <div class="comment">Lite-версия оригинального Яндекс Браузера</div>
-            
-            <div class="folder">USER_DATA\</div>
-            <div class="comment">Ваши данные браузера (закладки, история, пароли)</div>
-            
-            <!-- Добавляем важное примечание -->
-            <div style="margin-top: 25px; padding: 15px; background: rgba(255, 51, 102, 0.1); border-radius: 8px; border-left: 3px solid var(--primary);">
-                <p style="margin: 0; color: #ffccd5; font-size: 0.95rem;">
-                    <i class="fas fa-check-circle" style="color: var(--primary); margin-right: 8px;"></i>
-                    <strong>Важно:</strong> При совместном использовании Remove-Yandex.exe и PostInstall.exe 
-                    система полностью очищается от всех следов Яндекс Браузера - ни файлов, 
-                    ни записей в реестре, ни фоновых служб не остаётся.
-                </p>
+        <div class="structure-card">
+            <div></div>
+            <div style="position: relative; z-index: 2;">
+                <div class="folder">Alices-Thong/</div>
+                <div class="file">├── 📄 install.bat</div><div class="comment">│   Установщик — копирует файлы браузера</div>
+                <div class="file">├── 🚀 AlicesThong.exe</div><div class="comment">│   Портативный лаунчер (от ungoogled-chromium-portable)</div>
+                <div class="file">├── 🎯 StartAlicesThong.exe</div><div class="comment">│   Скомпилированная версия основного скрипта</div>
+                <div class="file">├── 📜 AlicesThongWithOutTelemetry.bat</div><div class="comment">│   Исходник скрипта (удаление телеметрии, служб, флаги)</div>
+                <div class="file">├── ⚙️ portapp.json</div><div class="comment">│   Конфигурация портативного лаунчера</div>
+                <div class="file">├── 🖼️ icon.ico</div><div class="comment">│   Иконка приложения</div>
+                <div class="file">├── 🧹 CleanYandex.bat</div><div class="comment">│   Очистка .sig файлов и телеметрии</div>
+                <div class="folder">├── 🗄️ data/</div><div class="comment">│   Ваши данные (профиль, закладки, пароли)</div>
+                <div class="folder">└── 📁 app/</div><div class="comment">    Браузер (копируется установщиком)</div>
+                <div class="folder">    └── 📁 26.4.0.2116/</div><div class="comment">        Версия браузера</div>
             </div>
         </div>
     </section>
 
-    <!-- Features -->
+    <section id="install" class="container">
+        <h2 class="section-title">Установка</h2>
+        <div class="install-steps">
+            <div class="step"><h3>Шаг 1: Установите оригинальный Яндекс Браузер</h3><p>Скачайте и установите Яндекс Браузер с официального сайта: <a href="https://browser.yandex.ru/" style="color: var(--primary);" target="_blank">browser.yandex.ru</a></p></div>
+            <div class="step"><h3>Шаг 2: Скачайте сборку</h3><p>Скачайте архив Alices-Thong.7z с <a href="#download" style="color: var(--primary);">раздела загрузки</a> или с GitHub Releases.</p></div>
+            <div class="step"><h3>Шаг 3: Распакуйте архив</h3><p>Распакуйте архив в любую папку (например, <code>C:\Apps\Alices-Thong\</code> или на флешку).</p></div>
+            <div class="step"><h3>Шаг 4: Запустите установщик</h3><p>Запустите <code>install.bat</code></p><div class="code-block"><code>install.bat</code></div></div>
+            <div class="step"><h3>Шаг 5: Готово!</h3><p>Браузер запустится автоматически. Теперь вы можете удалить оригинальный Яндекс Браузер — сборка работает независимо.</p></div>
+        </div>
+    </section>
+
     <section id="features" class="container">
-        <h2 class="section-title">Особенности</h2>
+        <h2 class="section-title">Что мы удалили</h2>
         <div class="features-grid">
-            <div class="feature-card glass-effect">
-                <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>Без телеметрии</h3>
-                <p>Полное отключение всех видов телеметрии и сбора данных Яндексом.</p>
-            </div>
-            <div class="feature-card glass-effect">
-                <div class="feature-icon">
-                    <i class="fas fa-tachometer-alt"></i>
-                </div>
-                <h3>Оптимизация</h3>
-                <p>Удалены ненужные службы и компоненты для увеличения производительности.</p>
-            </div>
-            <div class="feature-card glass-effect">
-                <div class="feature-icon">
-                    <i class="fas fa-user-secret"></i>
-                </div>
-                <h3>Приватность</h3>
-                <p>Усиленная защита приватности и блокировка рекламных трекеров.</p>
-            </div>
-            <div class="feature-card glass-effect">
-                <div class="feature-icon">
-                    <i class="fas fa-portrait"></i>
-                </div>
-                <h3>Портативность</h3>
-                <p>Не требует установки, работает из любой папки на диске.</p>
-            </div>
-            <div class="feature-card glass-effect">
-                <div class="feature-icon">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <h3>Быстрый запуск</h3>
-                <p>Убраны все задержки при запуске, связанные с проверкой обновлений.</p>
-            </div>
-            <div class="feature-card glass-effect">
-                <div class="feature-icon">
-                    <i class="fas fa-code"></i>
-                </div>
-                <h3>Кастомная стартовая</h3>
-                <p>Специальная стартовая страница без рекламы и рекомендаций.</p>
-            </div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-chart-line"></i></div><h3>Телеметрию</h3><p>MEIPreload/, PrivacySandboxAttestationsPreloaded/, metricsid, eventlog_provider.dll</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-sync-alt"></i></div><h3>Обновления</h3><p>YandexUpdaterService, browser-update.yandex.net, update.api.yandex.net</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-cogs"></i></div><h3>Фоновые службы</h3><p>YandexBrowserService, YandexProtectService, YandexDiskSync, YaTransmgr</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-tasks"></i></div><h3>Планировщик задач</h3><p>YandexUpdaterTask, YandexProtectTask, YandexBrowserUpdaterTask</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-camera"></i></div><h3>Скриншоты</h3><p>Отключены через --disable-features=Screenshots</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-history"></i></div><h3>Восстановление вкладок</h3><p>Сессии вычищаются перед каждым запуском</p></div>
+        </div>
+
+        <h2 class="section-title" style="margin-top: 60px;">Что мы оставили</h2>
+        <div class="features-grid">
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-microphone-alt"></i></div><h3>Алису</h3><p>alice_solver/, voiceactivation/ — голосовой помощник работает</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-palette"></i></div><h3>Нейроредактор</h3><p>neuroedit/ — генерация картинок работает</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-language"></i></div><h3>Перевод видео</h3><p>video_translation/ — перевод субтитров работает</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-book-open"></i></div><h3>Режим чтения</h3><p>readability_ml/ — нейро-ML модель работает</p></div>
         </div>
     </section>
 
-    <!-- Download Section -->
     <section id="download" class="container">
-        <div class="download-section glass-effect" style="
-            max-width: 1000px; 
-            margin: 0 auto;
-            background: 
-                linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.9)),
-                url('backgrounds/7.jpg') no-repeat center center;
-            background-size: cover;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        ">
-            
-            <!-- Градиентный акцент -->
-            <div style="
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 4px;
-                background: linear-gradient(90deg, var(--primary), var(--secondary));
-                z-index: 1;
-            "></div>
-            <h2 class="section-title">Скачать сборку</h2>
-
-            <p>Скачайте установщик Стринги Алисы - всего 1.5 МБ!</p>
-            
+        <div class="download-section glass-effect" style="background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.9)), url('backgrounds/7.jpg') no-repeat center center; background-size: cover;">
+            <div></div>
+            <h2 class="section-title" style="margin-top: 0;">Скачать</h2>
+            <p>Скачайте архив с последней версией сборки</p>
             <div class="download-buttons">
-                <a href="https://github.com/anton18-png/Alices-thong/releases/download/v1.0.0/Alices-Thong.exe" 
-                   class="download-btn" 
-                   download="Alices-Thong.exe">
-                    <i class="fas fa-file-download"></i>
-                    <div>
-                        <strong>Стринги Алисы v1.0</strong>
-                        <span class="file-size">EXE • 1.5 МБ</span>
-                    </div>
-                </a>
-                
-                <a href="https://browser.yandex.ru/" 
-                   target="_blank" 
-                   class="download-btn">
-                    <i class="fas fa-download"></i>
-                    <div>
-                        <strong>Оригинальный Яндекс</strong>
-                        <span class="file-size">Сначала установите это</span>
-                    </div>
-                </a>
-                
-                <a href="https://github.com/anton18-png/Alices-thong" 
-                   target="_blank" 
-                   class="download-btn">
-                    <i class="fab fa-github"></i>
-                    <div>
-                        <strong>GitHub Репозиторий</strong>
-                        <span class="file-size">Исходный код</span>
-                    </div>
-                </a>
+                <a href="https://github.com/anton18-png/Alices-thong/releases/download/v2/Alices-Thong.7z" class="download-btn"><i class="fas fa-file-archive"></i><div><strong>Alices-Thong.7z</strong><span class="file-size">Архив сборки • ~1.9 МБ</span></div></a>
+                <a href="https://browser.yandex.ru/" target="_blank" class="download-btn"><i class="fab fa-yandex"></i><div><strong>Оригинальный Яндекс</strong><span class="file-size">Установите сначала его</span></div></a>
+                <a href="https://github.com/anton18-png/Alices-thong" target="_blank" class="download-btn"><i class="fab fa-github"></i><div><strong>GitHub</strong><span class="file-size">Исходный код и релизы</span></div></a>
             </div>
         </div>
     </section>
 
-    <!-- Future Plans -->
-    <section id="future" class="container">
-        <h2 class="section-title">Планы на будущее</h2>
-        <div class="feature-card glass-effect" style="
-            max-width: 800px; 
-            margin: 0 auto;
-            background: 
-                linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.9)),
-                url('backgrounds/1.jpg') no-repeat center center;
-            background-size: cover;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        ">
-            
-            <!-- Градиентный акцент -->
-            <div style="
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 4px;
-                background: linear-gradient(90deg, var(--primary), var(--secondary));
-                z-index: 1;
-            "></div>
-            
-            <!-- Контент -->
-            <div style="position: relative; z-index: 2; padding: 35px;">
-                <div class="feature-icon">
-                    <i class="fas fa-atom"></i>
-                </div>
-                <h3 style="
-                    color: white;
-                    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-                    font-size: 1.8rem;
-                ">Сборка Atom от Mail.ru</h3>
-                <p style="
-                    color: #e9ecef;
-                    line-height: 1.8;
-                    font-size: 1.1rem;
-                    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-                ">
-                    В будущем планирую создать аналогичную сборку для браузера Atom от Mail.ru 
-                    с полным отключением телеметрии и оптимизацией производительности.
-                </p>
-                <div style="
-                    margin-top: 25px;
-                    padding: 15px;
-                    background: rgba(255, 255, 255, 0.05);
-                    border-radius: 8px;
-                    border-left: 3px solid var(--secondary);
-                ">
-                    <p style="
-                        margin: 0;
-                        color: var(--gray);
-                        display: flex;
-                        align-items: center;
-                        gap: 10px;
-                        font-size: 0.95rem;
-                    ">
-                        <i class="fas fa-bell" style="color: var(--primary);"></i>
-                        Следите за обновлениями в Telegram канале и на GitHub!
-                    </p>
-                </div>
-                
-                <!-- Кнопки для ссылок -->
-                <div style="
-                    margin-top: 25px;
-                    display: flex;
-                    gap: 15px;
-                    flex-wrap: wrap;
-                ">
-                    <a href="https://t.me/all_tweaker" 
-                       target="_blank" 
-                       style="
-                            display: inline-flex;
-                            align-items: center;
-                            gap: 8px;
-                            background: rgba(102, 51, 255, 0.2);
-                            color: white;
-                            padding: 10px 20px;
-                            border-radius: 8px;
-                            text-decoration: none;
-                            transition: all 0.3s;
-                            border: 1px solid rgba(102, 51, 255, 0.3);
-                       "
-                       onmouseover="this.style.background='rgba(102, 51, 255, 0.4)'; this.style.transform='translateY(-2px)';"
-                       onmouseout="this.style.background='rgba(102, 51, 255, 0.2)'; this.style.transform='translateY(0)';">
-                        <i class="fab fa-telegram"></i>
-                        Telegram канал
-                    </a>
-                    
-                    <a href="https://github.com/anton18-png/Alices-thong" 
-                       target="_blank" 
-                       style="
-                            display: inline-flex;
-                            align-items: center;
-                            gap: 8px;
-                            background: rgba(255, 255, 255, 0.1);
-                            color: white;
-                            padding: 10px 20px;
-                            border-radius: 8px;
-                            text-decoration: none;
-                            transition: all 0.3s;
-                            border: 1px solid rgba(255, 255, 255, 0.2);
-                       "
-                       onmouseover="this.style.background='rgba(255, 255, 255, 0.2)'; this.style.transform='translateY(-2px)';"
-                       onmouseout="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.transform='translateY(0)';">
-                        <i class="fab fa-github"></i>
-                        GitHub репозиторий
-                    </a>
-                </div>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section"><h3>Стринги Алисы</h3><p>Яндекс Браузер, которого<br>Яндекс не увидит</p><div class="social-links"><a href="https://github.com/anton18-png/Alices-thong" target="_blank" class="social-link"><i class="fab fa-github"></i></a><a href="https://t.me/all_tweaker" target="_blank" class="social-link"><i class="fab fa-telegram"></i></a></div></div>
+                <div class="footer-section"><h3>Ссылки</h3><p><a href="#about" style="color: var(--light); text-decoration: none;">О сборке</a></p><p><a href="#comparison" style="color: var(--light); text-decoration: none;">Сравнение</a></p><p><a href="#install" style="color: var(--light); text-decoration: none;">Установка</a></p><p><a href="#screenshot" style="color: var(--light); text-decoration: none;">Скриншот</a></p><p><a href="#download" style="color: var(--light); text-decoration: none;">Скачать</a></p></div>
+                <div class="footer-section"><h3>Контакты</h3><p>Telegram: <a href="https://t.me/all_tweaker" style="color: var(--primary);">@all_tweaker</a></p><p>GitHub: <a href="https://github.com/anton18-png" style="color: var(--primary);">anton18-png</a></p></div>
             </div>
         </div>
-    </section>
-<br><br><br><br><br>
-<!-- Footer -->
-<!-- <footer>
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Стринги Алисы</h3>
-                <p>Модифицированная сборка Яндекс Браузера<br>для тех, кто ценит приватность.</p>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Ссылки</h3>
-                <p><a href="#about" style="color: var(--light); text-decoration: none; transition: color 0.3s;" 
-                   onmouseover="this.style.color='var(--primary)';" 
-                   onmouseout="this.style.color='var(--light)';">О сборке</a></p>
-                <p><a href="#screenshot" style="color: var(--light); text-decoration: none; transition: color 0.3s;"
-                   onmouseover="this.style.color='var(--primary)';" 
-                   onmouseout="this.style.color='var(--light)';">Скриншот</a></p>
-                <p><a href="#download" style="color: var(--light); text-decoration: none; transition: color 0.3s;"
-                   onmouseover="this.style.color='var(--primary)';" 
-                   onmouseout="this.style.color='var(--light)';">Скачать</a></p>
-                <p><a href="#future" style="color: var(--light); text-decoration: none; transition: color 0.3s;"
-                   onmouseover="this.style.color='var(--primary)';" 
-                   onmouseout="this.style.color='var(--light)';">Планы</a></p>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Контакты</h3>
-                <p>GitHub: <a href="https://github.com/anton18-png/Alices-thong" target="_blank" 
-                   style="color: var(--primary); text-shadow: 0 0 5px rgba(255, 51, 102, 0.3); transition: all 0.3s;"
-                   onmouseover="this.style.textShadow='0 0 10px rgba(255, 51, 102, 0.6)'; this.style.color='#ff6680';"
-                   onmouseout="this.style.textShadow='0 0 5px rgba(255, 51, 102, 0.3)'; this.style.color='var(--primary)';">anton18-png/Alices-thong</a></p>
-                <p>Telegram: <a href="https://t.me/all_tweaker" target="_blank" 
-                   style="color: var(--primary); text-shadow: 0 0 5px rgba(255, 51, 102, 0.3); transition: all 0.3s;"
-                   onmouseover="this.style.textShadow='0 0 10px rgba(255, 51, 102, 0.6)'; this.style.color='#ff6680';"
-                   onmouseout="this.style.textShadow='0 0 5px rgba(255, 51, 102, 0.3)'; this.style.color='var(--primary)';">@all_tweaker</a></p>
-                
-                <div class="social-links">
-                    <a href="https://github.com/anton18-png/Alices-thong" target="_blank" class="social-link">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://t.me/all_tweaker" target="_blank" class="social-link">
-                        <i class="fab fa-telegram"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="copyright">
-            <p>© 2026 Стринги Алисы. Неофициальная модификация Яндекс Браузера.</p>
-            <p style="margin-top: 10px;">Все права на оригинальный браузер принадлежат Яндекс.</p>
-        </div>
-    </div>
-</footer> -->
+    </footer>
 </body>
 </html>
