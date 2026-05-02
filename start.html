@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Стринги Алисы</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Стринги Алисы — выбор обоев</title>
   <style>
     * {
       margin: 0;
@@ -14,8 +14,6 @@
     body {
       height: 100vh;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      /*background-image: url('backgrounds/3.jpg');*/
-      background-image: url('backgrounds/2.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -28,6 +26,7 @@
       justify-content: center;
       gap: 2.5vh;
       position: relative;
+      transition: background-image 0.3s ease;
     }
 
     /* Темный оверлей поверх фона для контраста */
@@ -40,6 +39,7 @@
       height: 100%;
       background: rgba(0, 0, 0, 0.3);
       z-index: -1;
+      pointer-events: none;
     }
 
     .clock {
@@ -184,6 +184,135 @@
       white-space: nowrap;
     }
 
+    /* Шестеренка внизу справа (как просили) */
+    .settings-gear {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 52px;
+      height: 52px;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+      border-radius: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1000;
+      transition: all 0.2s;
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+    .settings-gear:hover {
+      transform: rotate(25deg) scale(1.08);
+      background: rgba(255,105,180,0.6);
+      border-color: rgba(255,220,180,0.9);
+    }
+    .gear-icon {
+      font-size: 30px;
+      filter: drop-shadow(0 1px 4px black);
+    }
+
+    /* Панель выбора обоев (кастомная) */
+    .wallpaper-panel {
+      position: fixed;
+      bottom: 95px;
+      right: 28px;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(18px);
+      border-radius: 28px;
+      padding: 18px 20px;
+      width: 330px;
+      border: 1px solid rgba(255,105,180,0.5);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      z-index: 1001;
+      transition: all 0.2s ease;
+      opacity: 0;
+      transform: translateY(15px) scale(0.96);
+      pointer-events: none;
+    }
+    .wallpaper-panel.open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+    .panel-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 14px;
+      color: #ffb6d9;
+      border-bottom: 1px solid rgba(255,200,200,0.3);
+      display: inline-block;
+      width: 100%;
+    }
+    .theme-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .theme-btn {
+      background: rgba(30,30,45,0.9);
+      border: 1px solid rgba(255,255,200,0.4);
+      color: white;
+      font-size: 0.9rem;
+      padding: 7px 16px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      text-align: center;
+      flex: 1;
+    }
+    .theme-btn.active {
+      background: #ff69b4;
+      border-color: white;
+      color: #1a0a14;
+      box-shadow: 0 0 10px rgba(255,105,180,0.7);
+    }
+    .wallpaper-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      max-height: 250px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+    .wallpaper-item {
+      aspect-ratio: 3 / 2;
+      border-radius: 14px;
+      background-size: cover;
+      background-position: center;
+      border: 2px solid rgba(255,255,255,0.6);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .wallpaper-item:hover {
+      transform: scale(1.04);
+      border-color: #ff69b4;
+    }
+    .wallpaper-item.active-wall {
+      border: 3px solid #ff69b4;
+      box-shadow: 0 0 12px #ff69b4;
+    }
+    .close-panel {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 13px;
+      color: #ddd;
+      cursor: pointer;
+      background: rgba(0,0,0,0.5);
+      border-radius: 40px;
+      padding: 6px;
+      transition: 0.2s;
+    }
+    .close-panel:hover {
+      background: #ff69b4;
+      color: white;
+    }
+
+    /* Адаптация под разные экраны (как в оригинале) */
     @media (max-width: 1024px) {
       .apps-grid {
         grid-template-columns: repeat(5, 110px);
@@ -191,119 +320,47 @@
         max-width: 660px;
       }
     }
-
     @media (max-width: 768px) {
-      .search-container {
-        width: 92vw;
-      }
-      .search-input {
-        height: 56px;
-        border-radius: 16px;
-        font-size: 18px;
-        padding: 0 60px 0 24px;
-      }
-      
-      .apps-grid {
-        grid-template-columns: repeat(4, 100px);
-        gap: 20px;
-        max-width: 480px;
-      }
-      
-      .app {
-        width: 100px;
-      }
-      
-      .app img {
-        width: 80px;
-        height: 80px;
-      }
+      .search-container { width: 92vw; }
+      .search-input { height: 56px; border-radius: 16px; font-size: 18px; padding: 0 60px 0 24px; }
+      .apps-grid { grid-template-columns: repeat(4, 100px); gap: 20px; max-width: 480px; }
+      .app { width: 100px; }
+      .app img { width: 80px; height: 80px; }
+      .wallpaper-panel { width: 290px; right: 20px; bottom: 85px; }
+      .settings-gear { width: 48px; height: 48px; bottom: 22px; right: 22px; }
+      .gear-icon { font-size: 28px; }
     }
-
     @media (max-width: 600px) {
       .title { font-size: 2.4rem; }
       .logo { width: 60px; height: 60px; }
       .clock { font-size: 13vw; }
-      .search-container {
-        width: 90vw;
-      }
-      .search-input {
-        height: 52px;
-        border-radius: 14px;
-        font-size: 17px;
-        padding: 0 50px 0 22px;
-      }
-      
-      .apps-grid {
-        grid-template-columns: repeat(3, 90px);
-        gap: 20px;
-        max-width: 330px;
-        margin-top: 10px;
-      }
-      
-      .app {
-        width: 90px;
-        padding: 10px 6px;
-      }
-      
-      .app img {
-        width: 72px;
-        height: 72px;
-        border-radius: 18px;
-      }
-      
-      .app span {
-        font-size: 14px;
-      }
-      
-      body::before {
-        background: rgba(0, 0, 0, 0.4);
-      }
+      .search-container { width: 90vw; }
+      .search-input { height: 52px; border-radius: 14px; font-size: 17px; padding: 0 50px 0 22px; }
+      .apps-grid { grid-template-columns: repeat(3, 90px); gap: 20px; max-width: 330px; margin-top: 10px; }
+      .app { width: 90px; padding: 10px 6px; }
+      .app img { width: 72px; height: 72px; border-radius: 18px; }
+      .app span { font-size: 14px; }
+      body::before { background: rgba(0, 0, 0, 0.4); }
+      .wallpaper-panel { width: 270px; right: 12px; bottom: 78px; padding: 15px; }
     }
-
     @media (max-width: 400px) {
-      .apps-grid {
-        grid-template-columns: repeat(3, 80px);
-        gap: 15px;
-        max-width: 270px;
-      }
-      
-      .app {
-        width: 80px;
-      }
-      
-      .app img {
-        width: 64px;
-        height: 64px;
-      }
+      .apps-grid { grid-template-columns: repeat(3, 80px); gap: 15px; max-width: 270px; }
+      .app { width: 80px; }
+      .app img { width: 64px; height: 64px; }
     }
-
     @media (min-width: 1200px) {
-      .search-container {
-        width: min(90vw, 920px);
-      }
-      
-      .apps-grid {
-        max-width: 1100px;
-        grid-template-columns: repeat(5, 120px);
-      }
-      
-      .app {
-        width: 120px;
-      }
-      
-      .app img {
-        width: 96px;
-        height: 96px;
-      }
+      .search-container { width: min(90vw, 920px); }
+      .apps-grid { max-width: 1100px; grid-template-columns: repeat(5, 120px); }
+      .app { width: 120px; }
+      .app img { width: 96px; height: 96px; }
     }
   </style>
 </head>
 <body>
-
-  <div class="clock" id="time">18:50</div>
+  <div class="clock" id="time">--:--</div>
 
   <div class="brand">
-    <img src="logo.png" alt="Стринги Алисы" class="logo">
+    <img src="logo.png" alt="Стринги Алисы" class="logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2245%22%20fill%3D%22%23ff69b4%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%2268%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%20font-size%3D%2240%22%3EA%3C%2Ftext%3E%3C%2Fsvg%3E'">
     <h1 class="title">Стринги Алисы</h1>
   </div>
 
@@ -315,50 +372,193 @@
 
   <div class="apps-container">
     <div class="apps-grid">
-      <a href="https://yandex.com" class="app" target="_blank">
-        <img src="icons/yandex.png" alt="Yandex">
+      <a href="https://yandex.ru" class="app" target="_blank">
+        <img src="icons/yandex.png" alt="Yandex" onerror="this.src='https://favicon.yandex.net/favicon/yandex.ru'">
         <span>Яндекс</span>
       </a>
       <a href="https://dzen.ru" class="app" target="_blank">
-        <img src="icons/yandex.png" alt="Дзен">
+        <img src="icons/yandex.png" alt="Дзен" onerror="this.src='https://favicon.yandex.net/favicon/dzen.ru'">
         <span>Дзен</span>
       </a>
       <a href="https://mail.yandex.ru" class="app" target="_blank">
-        <img src="icons/mail.png" alt="Почта Яндекс">
+        <img src="icons/mail.png" alt="Почта Яндекс" onerror="this.src='https://favicon.yandex.net/favicon/mail.yandex.ru'">
         <span>Яндекс Почта</span>
       </a>
       <a href="https://mail.yandex.ru/lite" class="app" target="_blank">
-        <img src="icons/mail.png" alt="Почта Лайт">
+        <img src="icons/mail.png" alt="Почта Лайт" onerror="this.src='https://favicon.yandex.net/favicon/mail.yandex.ru'">
         <span>Почта Лайт</span>
       </a>
       <a href="https://translate.yandex.ru" class="app" target="_blank">
-        <img src="icons/yandex.png" alt="Переводчик">
+        <img src="icons/yandex.png" alt="Переводчик" onerror="this.src='https://favicon.yandex.net/favicon/translate.yandex.ru'">
         <span>Переводчик</span>
       </a>
       <a href="https://disk.yandex.ru" class="app" target="_blank">
-        <img src="icons/drive.png" alt="Диск">
+        <img src="icons/drive.png" alt="Диск" onerror="this.src='https://favicon.yandex.net/favicon/disk.yandex.ru'">
         <span>Диск</span>
       </a>
       <a href="https://music.yandex.ru" class="app" target="_blank">
-        <img src="icons/music.png" alt="Музыка">
+        <img src="icons/music.png" alt="Музыка" onerror="this.src='https://favicon.yandex.net/favicon/music.yandex.ru'">
         <span>Музыка</span>
       </a>
       <a href="https://mail.ru" class="app" target="_blank">
-        <img src="icons/mail.png" alt="Mail.ru">
+        <img src="icons/mail.png" alt="Mail.ru" onerror="this.src='https://favicon.yandex.net/favicon/mail.ru'">
         <span>Mail.ru</span>
       </a>
       <a href="https://vk.com" class="app" target="_blank">
-        <img src="icons/vk.png" alt="ВКонтакте">
+        <img src="icons/vk.png" alt="ВКонтакте" onerror="this.src='https://vk.com/favicon.ico'">
         <span>ВКонтакте</span>
       </a>
       <a href="https://youtube.com" class="app" target="_blank">
-        <img src="icons/youtube.png" alt="YouTube">
+        <img src="icons/youtube.png" alt="YouTube" onerror="this.src='https://www.youtube.com/s/desktop/014b3d06/img/favicon_32x32.png'">
         <span>YouTube</span>
       </a>
     </div>
   </div>
 
+  <!-- Шестеренка смены обоев -->
+  <div class="settings-gear" id="gearBtn">
+    <span class="gear-icon">⚙️</span>
+  </div>
+
+  <!-- Панель выбора обоев -->
+  <div class="wallpaper-panel" id="wallpaperPanel">
+    <div class="panel-title">🖌️ Сменить обои</div>
+    <div class="theme-buttons">
+      <div class="theme-btn" data-theme="dark" id="darkThemeBtn">🌙 Тёмные</div>
+      <div class="theme-btn" data-theme="light" id="lightThemeBtn">☀️ Светлые</div>
+    </div>
+    <div class="wallpaper-list" id="wallpaperList"></div>
+    <div class="close-panel" id="closePanelBtn">✖ Закрыть</div>
+  </div>
+
   <script>
+    // ---------- НАСТРОЙКИ ОБОЕВ ----------
+    const BASE_BG = 'backgrounds';
+    const WALL_COUNT = 7;
+    let currentTheme = 'dark';
+    let currentId = 1;
+
+    const bodyEl = document.body;
+    const gear = document.getElementById('gearBtn');
+    const panel = document.getElementById('wallpaperPanel');
+    const darkBtn = document.getElementById('darkThemeBtn');
+    const lightBtn = document.getElementById('lightThemeBtn');
+    const wallpaperListDiv = document.getElementById('wallpaperList');
+    const closePanel = document.getElementById('closePanelBtn');
+
+    function getWallUrl(theme, id) {
+      return `${BASE_BG}/${theme}/${id}.jpg`;
+    }
+
+    function setBackground(theme, id) {
+      const url = getWallUrl(theme, id);
+      bodyEl.style.backgroundImage = `url('${url}')`;
+      currentTheme = theme;
+      currentId = id;
+      try {
+        localStorage.setItem('alice_wall_theme', theme);
+        localStorage.setItem('alice_wall_id', id);
+      } catch(e) {}
+      updateActiveTheme();
+      highlightActiveWall();
+    }
+
+    function updateActiveTheme() {
+      if (currentTheme === 'dark') {
+        darkBtn.classList.add('active');
+        lightBtn.classList.remove('active');
+      } else {
+        lightBtn.classList.add('active');
+        darkBtn.classList.remove('active');
+      }
+    }
+
+    function highlightActiveWall() {
+      const items = document.querySelectorAll('.wallpaper-item');
+      items.forEach(item => {
+        const wid = parseInt(item.getAttribute('data-id'), 10);
+        const wtheme = item.getAttribute('data-theme');
+        if (wid === currentId && wtheme === currentTheme) {
+          item.classList.add('active-wall');
+        } else {
+          item.classList.remove('active-wall');
+        }
+      });
+    }
+
+    function renderGrid(theme) {
+      wallpaperListDiv.innerHTML = '';
+      for (let i = 1; i <= WALL_COUNT; i++) {
+        const thumb = getWallUrl(theme, i);
+        const div = document.createElement('div');
+        div.className = 'wallpaper-item';
+        if (currentTheme === theme && currentId === i) div.classList.add('active-wall');
+        div.setAttribute('data-id', i);
+        div.setAttribute('data-theme', theme);
+        div.style.backgroundImage = `url('${thumb}')`;
+        div.style.backgroundSize = 'cover';
+        div.addEventListener('click', (e) => {
+          e.stopPropagation();
+          setBackground(theme, i);
+          panel.classList.remove('open');
+        });
+        wallpaperListDiv.appendChild(div);
+      }
+      highlightActiveWall();
+    }
+
+    function switchTheme(theme) {
+      currentTheme = theme;
+      if (currentId < 1) currentId = 1;
+      if (currentId > WALL_COUNT) currentId = 1;
+      setBackground(currentTheme, currentId);
+      renderGrid(currentTheme);
+      updateActiveTheme();
+    }
+
+    function loadSaved() {
+      let savedTheme = null, savedId = null;
+      try {
+        savedTheme = localStorage.getItem('alice_wall_theme');
+        savedId = localStorage.getItem('alice_wall_id');
+      } catch(e) {}
+      if (savedTheme === 'dark' || savedTheme === 'light') currentTheme = savedTheme;
+      else currentTheme = 'dark';
+      if (savedId && !isNaN(parseInt(savedId,10))) {
+        let pid = parseInt(savedId,10);
+        if (pid >=1 && pid <= WALL_COUNT) currentId = pid;
+        else currentId = 1;
+      } else currentId = 1;
+      const initUrl = getWallUrl(currentTheme, currentId);
+      bodyEl.style.backgroundImage = `url('${initUrl}')`;
+      renderGrid(currentTheme);
+      updateActiveTheme();
+    }
+
+    function togglePanel() {
+      if (panel.classList.contains('open')) {
+        panel.classList.remove('open');
+      } else {
+        renderGrid(currentTheme);
+        panel.classList.add('open');
+      }
+    }
+
+    function closePanelFunc() {
+      panel.classList.remove('open');
+    }
+
+    gear.addEventListener('click', (e) => { e.stopPropagation(); togglePanel(); });
+    closePanel.addEventListener('click', closePanelFunc);
+    darkBtn.addEventListener('click', () => { if (currentTheme !== 'dark') switchTheme('dark'); closePanelFunc(); });
+    lightBtn.addEventListener('click', () => { if (currentTheme !== 'light') switchTheme('light'); closePanelFunc(); });
+    document.addEventListener('click', (e) => {
+      if (panel.classList.contains('open') && !panel.contains(e.target) && !gear.contains(e.target)) {
+        panel.classList.remove('open');
+      }
+    });
+
+    // Часы и фокус
     function updateTime() {
       const now = new Date();
       const h = String(now.getHours()).padStart(2, '0');
@@ -367,9 +567,9 @@
     }
     updateTime();
     setInterval(updateTime, 1000);
-
     document.querySelector('.search-input').focus();
-  </script>
 
+    loadSaved();
+  </script>
 </body>
 </html>
