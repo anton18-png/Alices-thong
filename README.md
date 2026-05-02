@@ -467,7 +467,6 @@ HKLM\SOFTWARE\Policies\Yandex\Yandex Browser
 ---
 
 ## 📁 ПОЛНАЯ СТРУКТУРА СБОРКИ
-<img width="1280" height="678" alt="folder" src="https://github.com/user-attachments/assets/9f00fb92-0a01-4919-a1b0-d10c6914faed" />
 
 ```
 Alices-Thong/
