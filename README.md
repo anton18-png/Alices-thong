@@ -1,6 +1,6 @@
 # Стринги Алисы - Портативный Яндекс Браузер без телеметрии
 
-<img width="1920" height="1037" alt="preview" src="https://github.com/user-attachments/assets/02515777-15a2-42d5-8695-29564b6183b0" />
+<img width="1920" height="1033" alt="{9607F7CD-F1F3-4BA8-A6AA-E624EB8573E9}" src="https://github.com/user-attachments/assets/f05b8ac0-7509-49e9-9955-d40ef4f51fcb" />
 
 **Полностью портативная версия Яндекс Браузера с отключением телеметрии, служб обновления и фоновой активности.**
 
