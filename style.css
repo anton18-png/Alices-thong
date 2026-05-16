@@ -17,7 +17,7 @@
 }
 
 body {
-  background: linear-gradient(var(--overlay), var(--overlay)), url('backgrounds/light/6.jpg') no-repeat center center fixed;
+  background: linear-gradient(var(--overlay), var(--overlay)), url('backgrounds/light/10.jpg') no-repeat center center fixed;
   background-size: cover;
   color: var(--light);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -133,7 +133,7 @@ header {
 }
 
 .hero-content {
-  background: linear-gradient(var(--overlay-light), var(--overlay-light)), url('backgrounds/dark/1.jpg') no-repeat center center;
+  background: linear-gradient(var(--overlay-light), var(--overlay-light)), url('backgrounds/dark/9.jpg') no-repeat center center;
   background-size: cover;
   backdrop-filter: blur(10px);
   padding: 60px;
@@ -210,19 +210,6 @@ header {
 .badge-green { background: #2ea043; color: white; }
 .badge-blue { background: #0078D6; color: white; }
 
-/* Warning Box */
-.warning-box {
-  padding: 20px;
-  margin: 20px 0;
-  border-left: 4px solid #ffc107;
-  background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.85)), url('backgrounds/dark/7.jpg') no-repeat center center;
-  background-size: cover;
-}
-.warning-box h3 {
-  color: #ffc107;
-  margin-bottom: 10px;
-}
-
 /* Section Titles */
 .section-title {
   text-align: center;
@@ -280,7 +267,7 @@ header {
 
 /* Comparison Table */
 .comparison-table {
-  background: linear-gradient(rgba(26, 26, 46, 0.8), rgba(26, 26, 46, 0.8)), url('backgrounds/dark/7.jpg') no-repeat center center;
+  background: linear-gradient(rgba(26, 26, 46, 0.8), rgba(26, 26, 46, 0.8)),
   background-size: cover;
   backdrop-filter: blur(10px);
   border-radius: 15px;
@@ -435,7 +422,7 @@ header {
 .download-section {
   text-align: center;
   padding: 50px;
-  background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.9)), url('backgrounds/dark/1.jpg') no-repeat center center;
+  background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.9)), url('backgrounds/dark/4.jpg') no-repeat center center;
   background-size: cover;
   border-radius: 20px;
   margin: 80px 0;

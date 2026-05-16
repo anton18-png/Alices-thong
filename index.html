@@ -1,17 +1,17 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🩲 Стринги Алисы — Портативный Яндекс Браузер без телеметрии</title>
+    <title>Стринги Алисы — Портативный Яндекс Браузер без телеметрии</title>
+    <link rel="icon" type="image/x-icon" href="logo.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="bg-pattern"></div>
 
-    <header>
+<!--     <header>
         <div class="container">
             <div class="header-content">
                 <div class="logo">
@@ -24,14 +24,16 @@
                 <nav class="nav-links">
                     <a href="#about">О сборке</a>
                     <a href="#comparison">Сравнение</a>
+                    <a href="#modes">Режимы</a>
                     <a href="#install">Установка</a>
                     <a href="#screenshot">Скриншот</a>
-                    <a href="#clean">Очистка</a>
+                    <a href="#structure">Структура</a>
+                    <a href="#arsenal">Арсенал</a>
                     <a href="#download">Скачать</a>
                 </nav>
             </div>
         </div>
-    </header>
+    </header> -->
 
     <section class="hero">
         <div class="container">
@@ -40,7 +42,7 @@
                 <p><strong>«Яндекс не узнает, что ты здесь был»</strong></p>
                 <p>Полностью портативная версия Яндекс Браузера с отключением телеметрии, служб обновления и фоновой активности</p>
                 <div class="badges">
-                    <span class="badge badge-red"><i class="fas fa-tag"></i> Версия 2.1</span>
+                    <span class="badge badge-red"><i class="fas fa-tag"></i> Версия 3.0</span>
                     <span class="badge badge-green"><i class="fas fa-check-circle"></i> MIT License</span>
                     <span class="badge badge-blue"><i class="fab fa-windows"></i> Windows 10/11</span>
                 </div>
@@ -49,24 +51,16 @@
         </div>
     </section>
 
-    <!-- <div class="container">
-        <div class="glass-effect warning-box">
-            <h3><i class="fas fa-exclamation-triangle"></i> ВАЖНОЕ ПРЕДУПРЕЖДЕНИЕ</h3>
-            <p>Перед установкой сборки необходимо установить оригинальный Яндекс Браузер! Сделайте бэкап ваших данных, если вы им пользовались.</p>
-            <p style="margin-top: 10px;"><strong>Это неофициальная модификация.</strong> Все права на оригинальный браузер принадлежат Яндекс.</p>
-        </div>
-    </div> -->
-
     <section id="about" class="container">
         <h2 class="section-title">Что такое Стринги Алисы?</h2>
         <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">Эта сборка — результат бескомпромиссной войны с телеметрией, фоновыми службами и скрытыми слежками Яндекс Браузера. Здесь нет ничего лишнего. Только браузер. Без докладов «наверх».</p>
         <div class="features-grid">
-            <div class="feature-card"><div class="feature-icon"><i class="fas fa-skull"></i></div><h3>Смерть телеметрии</h3><p>Полное отключение всех видов сбора данных. Яндекс не узнает, какие сайты вы посещаете.</p></div>
-            <div class="feature-card"><div class="feature-icon"><i class="fas fa-ghost"></i></div><h3>Невидимость в системе</h3><p>После закрытия браузера не остаётся никаких следов — ни фоновых процессов, ни записей в реестре.</p></div>
-            <div class="feature-card"><div class="feature-icon"><i class="fas fa-bolt"></i></div><h3>Максимальная скорость</h3><p>Удалены все обновления, проверки лицензий и фоновые задачи.</p></div>
-            <div class="feature-card"><div class="feature-icon"><i class="fas fa-brain"></i></div><h3>Нейросети работают</h3><p>Сохранены Алиса, Нейроредактор, перевод видео и другие нейроинструменты.</p></div>
-            <div class="feature-card"><div class="feature-icon"><i class="fas fa-sd-card"></i></div><h3>Портативность</h3><p>Носить с собой на флешке. Работает на любом компьютере.</p></div>
-            <div class="feature-card"><div class="feature-icon"><i class="fas fa-shield"></i></div><h3>Убийца слежки</h3><p>Блокировка всех телеметрических доменов через hosts, удаление служб Яндекс.</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-skull"></i></div><h3>Смерть телеметрии</h3><p>Полное отключение всех видов сбора данных. Яндекс не узнает, какие сайты вы посещаете. Metrics ID обнуляется при каждом запуске.</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-ghost"></i></div><h3>Невидимость в системе</h3><p>После закрытия браузера не остаётся никаких следов — ни фоновых процессов, ни записей в реестре, ни служб в системе.</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-bolt"></i></div><h3>Максимальная скорость</h3><p>Удалены все обновления, проверки лицензий и фоновые задачи. Никаких service_update.exe, browser_wer.dll и прочего мусора.</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-layer-group"></i></div><h3>5 режимов запуска</h3><p>От обычного браузера с синхронизацией до полной анонимности с блокировкой 400+ доменов в hosts и режимом инкогнито.</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-sd-card"></i></div><h3>Портативность</h3><p>Носить с собой на флешке. Работает на любом компьютере без установки. Все данные профиля — в папке data/, а не в AppData.</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-shield"></i></div><h3>Арсенал очистки</h3><p>Удаление 8 служб Яндекса, 12 задач планировщика, блокировка 400+ доменов, политики реестра, экспорт настроек в .reg.</p></div>
         </div>
     </section>
 
@@ -79,13 +73,58 @@
                     <tr><td>Телеметрия</td><td class="no">✅ Шлёт статистику</td><td class="yes">🚫 Полностью заблокирована</td></tr>
                     <tr><td>Фоновая работа</td><td class="no">✅ Висит в фоне</td><td class="yes">🚫 Убивается при закрытии</td></tr>
                     <tr><td>Обновления</td><td class="no">✅ Автоматические</td><td class="yes">🚫 Вырваны с корнем</td></tr>
-                    <tr><td>Службы в системе</td><td class="no">✅ Живут постоянно</td><td class="yes">🚫 Удалены</td></tr>
-                    <tr><td>metricsid</td><td class="no">✅ Уникальный ID</td><td class="yes">🚫 Обнулён после каждого запуска</td></tr>
-                    <tr><td>Скриншоты</td><td class="no">✅ Разрешены</td><td class="yes">🚫 Отключены</td></tr>
-                    <tr><td>Восстановление вкладок</td><td class="no">✅ Восстанавливает</td><td class="yes">🚫 Сессии вычищаются</td></tr>
+                    <tr><td>Службы в системе</td><td class="no">✅ 8 служб постоянно</td><td class="yes">🚫 Все удалены</td></tr>
+                    <tr><td>Планировщик задач</td><td class="no">✅ 12 задач</td><td class="yes">🚫 Все удалены</td></tr>
+                    <tr><td>metrics_id</td><td class="no">✅ Уникальный ID</td><td class="yes">🚫 Обнулён</td></tr>
+                    <tr><td>Блокировка hosts</td><td class="no">—</td><td class="yes">✅ 400+ доменов</td></tr>
+                    <tr><td>Реестр</td><td class="no">✅ Засоряет</td><td class="yes">🚫 Экспорт + очистка</td></tr>
+                    <tr><td>Crash-репорты</td><td class="no">✅ Шлёт краши</td><td class="yes">🚫 Отключены</td></tr>
+                    <tr><td>Скриншоты страниц</td><td class="no">✅ Разрешены</td><td class="yes">🚫 Отключены политикой</td></tr>
+                    <tr><td>Восстановление вкладок</td><td class="no">✅ Восстанавливает</td><td class="yes">🚫 Очищается при запуске</td></tr>
                     <tr><td>Портативность</td><td class="no">✅ Требует установки</td><td class="yes">✅ Работает с флешки</td></tr>
-                    <tr><td>Синхронизация</td><td class="yes">✅ Работает</td><td class="yes">✅ Работает (опционально)</td></tr>
-                    <tr><td>Алиса / Нейросети</td><td class="yes">✅ Работают</td><td class="yes">✅ Работают (опционально)</td></tr>
+                    <tr><td>Синхронизация</td><td class="yes">✅ Работает</td><td class="yes">✅ Опционально (режим 1)</td></tr>
+                    <tr><td>Тёмная тема</td><td class="no">—</td><td class="yes">✅ Принудительно включена</td></tr>
+                    <tr><td>Алиса</td><td class="yes">✅ Встроена</td><td class="yes">✅ Опционально (режимы 1-2)</td></tr>
+                    <tr><td>Файлы в AppData</td><td class="no">✅ Оставляет</td><td class="yes">🚫 Всё в data/ рядом</td></tr>
+                    <tr><td>Экспорт реестра</td><td class="no">—</td><td class="yes">✅ .reg перед очисткой</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="modes" class="container">
+        <h2 class="section-title">5 режимов запуска</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">Перед каждым запуском (кроме режима 5) выполняются шаги 0 и 0b: экспорт реестра в <code class="inline-code">AlicesThong.reg</code> и <code class="inline-code">AlicesThong_HKU.reg</code>, затем очистка веток <code class="inline-code">HKCU\Software\Yandex</code> и <code class="inline-code">HKU\*\Software\Yandex</code>. Все режимы запускаются с <code class="inline-code">--force-dark-mode</code>.</p>
+
+        <div class="comparison-table">
+            <table>
+                <thead><tr><th>#</th><th>Режим</th><th>Службы</th><th>Реестр</th><th>Синхр.</th><th>Hosts</th><th>Алиса</th><th>Инкогн.</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge badge-green" style="border-radius: 50%; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center;">1</span></td>
+                        <td><strong>Без телеметрии, с синхронизацией</strong></td>
+                        <td class="yes">🚫 Блок</td><td class="yes">✅ Пол.</td><td class="yes">✅ Вкл</td><td class="no">—</td><td class="yes">✅ Вкл</td><td class="no">—</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-yellow" style="border-radius: 50%; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; background: #d29922;">2</span></td>
+                        <td><strong>Без телеметрии, без синхронизации</strong></td>
+                        <td class="yes">🚫 Блок</td><td class="yes">✅ Пол.</td><td class="no">🚫 Выкл</td><td class="no">—</td><td class="yes">✅ Вкл</td><td class="no">—</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge badge-red" style="border-radius: 50%; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; background: #f85149;">3</span></td>
+                        <td><strong>Полная блокировка</strong></td>
+                        <td class="yes">🚫 Блок</td><td class="yes">✅ Пол.</td><td class="no">🚫 Выкл</td><td class="yes">✅ 400+</td><td class="no">🚫 Выкл</td><td class="no">—</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge" style="border-radius: 50%; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; background: #f85149;">4</span></td>
+                        <td><strong>Полная блокировка + инкогнито</strong></td>
+                        <td class="yes">🚫 Блок</td><td class="yes">✅ Пол.</td><td class="no">🚫 Выкл</td><td class="yes">✅ 400+</td><td class="no">🚫 Выкл</td><td class="yes">✅ Вкл</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge" style="border-radius: 50%; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; background: #8b949e;">5</span></td>
+                        <td><strong>Как Яндекс Браузер (без изменений)</strong></td>
+                        <td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -93,12 +132,29 @@
 
     <section id="install" class="container">
         <h2 class="section-title">Установка</h2>
+
         <div class="install-steps">
-            <div class="step"><h3>Шаг 1: Установите оригинальный Яндекс Браузер</h3><p>Скачайте и установите Яндекс Браузер с официального сайта: <a href="https://browser.yandex.ru/" style="color: var(--primary);" target="_blank">browser.yandex.ru</a></p><p><strong>Почему это нужно?</strong> Сборка использует оригинальные файлы браузера.</p></div>
-            <div class="step"><h3>Шаг 2: Скачайте сборку</h3><p>Скачайте архив Alices-Thong.7z с <a href="#download" style="color: var(--primary);">раздела загрузки</a> или с GitHub Releases.</p><div class="code-block"><code>https://github.com/anton18-png/Alices-thong/releases/download/v2.1/Alices-Thong.7z</code></div></div>
-            <div class="step"><h3>Шаг 3: Распакуйте архив</h3><p>Распакуйте архив в любую папку (например, <code class="inline-code">C:\Apps\Alices-Thong\</code> или на флешку).</p></div>
-            <div class="step"><h3>Шаг 4: Запустите установщик</h3><p>Запустите <code class="inline-code">Install-Alices-Thong.bat</code> или <code class="inline-code">Install-Alices-Thong.exe</code></p></div>
-            <div class="step"><h3>Шаг 5: Готово!</h3><p>Браузер запустится автоматически. Теперь вы можете удалить оригинальный Яндекс Браузер — сборка работает независимо.</p></div>
+            <div class="step">
+                <h3>Шаг 1: Установите оригинальный Яндекс Браузер</h3>
+                <p>Скачайте и установите Яндекс Браузер с официального сайта: <a href="https://browser.yandex.ru/" style="color: var(--primary);" target="_blank">browser.yandex.ru</a></p>
+                <p><strong>Почему это нужно?</strong> Лаунчер использует оригинальные файлы браузера из <code class="inline-code">%USERPROFILE%\AppData\Local\Yandex\YandexBrowser\Application</code> для создания портативной копии.</p>
+            </div>
+            <div class="step">
+                <h3>Шаг 2: Скачайте сборку</h3>
+                <p>Скачайте архив с <a href="#download" style="color: var(--primary);">раздела загрузки</a> или с GitHub Releases. Внутри — лаунчер и portapp.json.</p>
+            </div>
+            <div class="step">
+                <h3>Шаг 3: Распакуйте архив</h3>
+                <p>Распакуйте архив в любую папку (например, <code class="inline-code">C:\Apps\Alices-Thong\</code> или на флешку).</p>
+            </div>
+            <div class="step">
+                <h3>Шаг 4: Запустите лаунчер и нажмите «Портативная установка»</h3>
+                <p>Запустите <code class="inline-code">Launcher.exe</code>. Перейдите на вкладку <strong>«Установка»</strong> и нажмите «Портативная установка». Лаунчер скопирует файлы браузера в папку <code class="inline-code">app/</code>, переименует <code class="inline-code">browser.exe</code> → <code class="inline-code">chrome.exe</code></p>
+            </div>
+            <div class="step">
+                <h3>Шаг 5: Готово!</h3>
+                <p>Путь на вкладке «Запуск» обновится автоматически. Теперь можно удалить оригинальный Яндекс Браузер — портативная копия работает независимо.</p>
+            </div>
         </div>
     </section>
 
@@ -108,81 +164,62 @@
             <div class="screenshot-container">
                 <img src="app.png" alt="Скриншот Стринги Алисы" class="screenshot">
             </div>
-            <p class="screenshot-caption">Интерфейс браузера Стринги Алисы — лёгкий и компактный</p>
+            <p class="screenshot-caption">Интерфейс лаунчера Стринги Алисы — управление браузером в одном окне</p>
         </div>
     </section>
 
-    <section class="container">
-        <h2 class="section-title">Структура сборки</h2>
-        <div class="structure-card">
-            <div class="file-tree">
-                <div class="folder">Alices-Thong/</div>
-                <div class="file">├── 🚀 AlicesThong.exe</div><div class="comment">Портативный лаунчер (portapps)</div>
-                <div class="file">├── 🎯 StartAlicesThong.exe</div><div class="comment">Скомпилированный скрипт</div>
-                <div class="file">├── 🧹 CleanYandex.bat</div><div class="comment">НОВЫЙ интерактивный скрипт очистки (10 пунктов)</div>
-                <div class="file">├── ⚙️ install.bat</div><div class="comment">Установщик</div>
-                <div class="file">├── 📜 AlicesThongWithOutTelemetry.bat</div><div class="comment">Исходник скрипта</div>
-                <div class="file">├── 🖼️ icon.ico</div><div class="comment">Иконка</div>
-                <div class="file">├── ⚙️ portapp.json</div><div class="comment">Конфиг лаунчера</div>
-                <div class="file">├── 🗑️ Remove-Yandex-Browser.exe</div><div class="comment">Полное удаление оригинального браузера</div>
-                <div class="folder">├── 🗄️ data/</div><div class="comment">Твои данные (профиль, закладки, пароли)</div>
-                <div class="folder">└── 📁 app/</div><div class="comment">Браузер (копируется установщиком)</div>
-                <div class="folder">    └── 📁 [версия]/</div><div class="comment">Любая версия (26.4.0.2116, 30.x.x.x)</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="clean" class="container">
+    <section id="arsenal" class="container">
         <h2 class="section-title">Арсенал уничтожения телеметрии</h2>
 
-        <h3>1. Удаление служб (sc delete)</h3>
-        <div class="code-block"><code>YandexBrowserService      # Основная служба<br>YandexUpdaterService      # Обновления<br>YaTransmgr                # Транспортный менеджер<br>YandexProtectService      # "Защита" (читай — слежка)<br>YandexDiskSync            # Синхронизация с диском<br>YandexBrowserCrashHandler # Отправка крашей</code></div>
+        <h3>1. Удаление служб Яндекса (sc stop + sc delete)</h3>
+        <p>8 служб, которые Яндекс устанавливает в систему. Все они <strong>останавливаются и удаляются</strong> при запуске.</p>
+        <div class="code-block"><code>YandexBrowserService      # Основная служба браузера<br>YandexUpdaterService      # Служба обновлений<br>YaTransmgr                # Транспортный менеджер<br>YandexProtectService      # "Защита" — читай слежка<br>YandexDiskSync            # Синхронизация с Яндекс Диском<br>YandexBrowserUpdater      # Обновление браузера<br>YandexBrowserCrashHandler # Отправка крашей<br>YandexBrowserExtensionUpdater # Обновление расширений</code></div>
 
-        <h3>2. Зачистка планировщика (schtasks /delete)</h3>
-        <div class="code-block"><code>YandexUpdaterTask<br>YandexProtectTask<br>YandexBrowserUpdaterTask<br>YandexUpdateTaskMachineCore<br>YandexUpdateTaskMachineUA</code></div>
+        <h3>2. Зачистка планировщика (schtasks /delete /f)</h3>
+        <p>12 задач, которые Яндекс создаёт в планировщике Windows для фоновой активности.</p>
+        <div class="code-block"><code>YandexUpdaterTask                YandexBrowserUpdateTask<br>YandexProtectTask                YandexUpdateTaskMachineCore<br>YandexDiskSyncTask               YandexUpdateTaskMachineUA<br>YandexBrowserUpdaterTask         Восстановление сервиса обновлений...<br>YandexBrowserCrashHandlerTask    Обновление Браузера Яндекс<br>YandexBrowserExtensionUpdaterTask Системное обновление Браузера Яндекс</code></div>
 
-        <h3>3. Блокировка через hosts</h3>
-        <div class="code-block"><code>127.0.0.1 update.api.yandex.net     # Обновления<br>127.0.0.1 events.yandex.net         # События<br>127.0.0.1 metrics.yandex.com        # Метрики<br>127.0.0.1 api-metrics.yandex.net    # API метрик<br>127.0.0.1 browser-update.yandex.net # Обновления браузера</code></div>
+        <h3>3. Политики реестра</h3>
+        <p>Применяются в <code class="inline-code">HKLM\SOFTWARE\Policies\Yandex\YandexBrowser</code>. Альтернативный путь с пробелом — тоже.</p>
+        <div class="code-block"><code>BackgroundModeEnabled  = 0   # Никакого фона<br>ScreenshotsEnabled     = 0   # Никаких скриншотов<br>RestoreOnStartup       = 4   # Всегда чистая вкладка<br>UpdateDefault          = 0   # Никаких обновлений<br>MetricsReportingEnabled= 0   # Никаких метрик<br>SessionRestoreAutoRestore=0  # Никакого восстановления<br>SyncDisabled            = 1  # (режимы 2-4) Нет синхронизации</code></div>
 
-        <h3>4. Политики реестра</h3>
-        <div class="code-block"><code>HKLM\SOFTWARE\Policies\Yandex\YandexBrowser<br><br>BackgroundModeEnabled = 0          # Нет фона<br>ScreenshotsEnabled = 0             # Нет скриншотов<br>RestoreOnStartup = 4               # Новая вкладка<br>UpdateDefault = 0                  # Нет обновлений<br>MetricsReportingEnabled = 0        # Нет метрик<br>SessionRestoreAutoRestore = 0      # Нет восстановления сессий</code></div>
+        <h3>4. Блокировка через hosts — 400+ доменов</h3>
+        <p>Все запросы к телеметрическим серверам уходят в <strong>127.0.0.1</strong> (в никуда). Перед блокировкой создаётся резервная копия <code class="inline-code">hosts.backup_alices</code>.</p>
+        <div class="code-block"><code>=== Яндекс (164 домена) ===<br>yandex.com, yandex.ru, ya.ru, yastatic.net, yandex.net,<br>metrika.yandex.ru, mc.yandex.ru, audience.yandex.ru,<br>direct.yandex.ru, market.yandex.ru, money.yandex.ru,<br>dzen.ru, zen.yandex.ru, kinopoisk.ru, auto.ru,<br>cloud.yandex.ru, music.yandex.ru, taxi.yandex.ru,<br>eda.yandex.ru, maps.yandex.ru, mail.yandex.ru,<br>browser.yandex.ru, update.browser.yandex.net,<br>api.browser.yandex.ru, passport.yandex.ru, id.yandex.ru,<br>alice.yandex.ru, voice.yandex.ru, speech.yandex.ru,<br>station.yandex, alice.yandex, и ещё 130+ доменов</code></div>
 
-        <h3>5. Флаги запуска</h3>
-        <div class="code-block"><code>--disable-background-mode      # Запрет фоновой работы<br>--disable-features=Screenshots # Отключение скриншотов<br>--restore-on-startup=0         # Не восстанавливать вкладки<br>--disable-usage-statistics     # Отключить статистику<br>--disable-crash-reporter       # Отключить отправку крашей<br>--disable-metrics              # Отключить метрики<br>--disable-sync                 # Отключить синхронизацию<br>--disable-rlz                  # Отключить маркетинговые метки</code></div>
+        <div class="code-block"><code>=== Google Chrome — телеметрия (19 доменов) ===<br>ssl.google-analytics.com, www.google-analytics.com,<br>stats.g.doubleclick.net, googletagmanager.com,<br>googleads.g.doubleclick.net, pagead2.googlesyndication.com,<br>crashlytics.google.com, safebrowsing.googleapis.com,<br>update.googleapis.com, dl.google.com, и ещё 9 доменов<br><br>⚠ google.com, youtube.com, gmail.com НЕ блокируются</code></div>
 
-        <h3>6. CleanYandex.bat — Интерактивная очистка (10 пунктов)</h3>
-        <div class="comparison-table">
-            <table>
-                <thead><tr><th>Пункт</th><th>Компонент</th><th>Что удаляется</th><th>Размер</th></tr></thead>
-                <tbody>
-                    <tr><td>1</td><td>📡 Телеметрия</td><td>debug.log, eventlog_provider.dll, MEIPreload/, PrivacySandboxAttestationsPreloaded/</td><td>~5 МБ</td></tr>
-                    <tr><td>2</td><td>🔔 Уведомления</td><td>notification_helper.exe</td><td>~3.5 МБ</td></tr>
-                    <tr><td>3</td><td>☁️ Синхронизация</td><td>IwaKeyDistribution/</td><td>~2 МБ</td></tr>
-                    <tr><td>4</td><td>🗣️ Алиса</td><td>alice_solver/, voiceactivation/, cspeechkit.dll</td><td>~50 МБ</td></tr>
-                    <tr><td>5</td><td>🧠 Нейросети</td><td>neuroedit/, readability_ml/, video_translation/</td><td>~150 МБ</td></tr>
-                    <tr><td>6</td><td>📊 Виджеты</td><td>widgets/</td><td>~15 МБ</td></tr>
-                    <tr><td>7</td><td>🖼️ Иконки для пуска</td><td>VisualElements/</td><td>~0.5 МБ</td></tr>
-                    <tr><td>8</td><td>🔐 Подписи Яндекса</td><td>*.sig</td><td>~2 МБ</td></tr>
-                    <tr><td>9</td><td>🛡️ Блокировщик рекламы</td><td>resources/easylist/</td><td>~50 МБ</td></tr>
-                    <tr><td>10</td><td>🎮 DirectX/Vulkan</td><td>d3dcompiler_47.dll, vulkan-1.dll и др.</td><td>~50 МБ</td></tr>
-                </tbody>
-            </table>
-        </div>
+        <div class="code-block"><code>=== Opera (44 домена) ===<br>telemetry.opera.com, analytics.opera.com,<br>autoupdate.opera.com, sync.opera.com,<br>addons.opera.com, logs.opera.com,<br>crash-reports.opera.com, vpn.opera.com,<br>desktop.opera.com, и ещё 35 доменов</code></div>
 
-        <!-- <h3>7. Что нельзя удалять</h3>
-        <div class="comparison-table">
-            <table>
-                <thead><tr><th>Папка</th><th>Для чего нужна</th></tr></thead>
-                <tbody>
-                    <tr><td><code class="inline-code">alice_solver/</code></td><td>Алиса (голосовой помощник)</td></tr>
-                    <tr><td><code class="inline-code">neuroedit/</code></td><td>Нейроредактор (генерация картинок)</td></tr>
-                    <tr><td><code class="inline-code">video_translation/</code></td><td>Перевод видео</td></tr>
-                    <tr><td><code class="inline-code">voiceactivation/</code></td><td>Голосовая активация</td></tr>
-                    <tr><td><code class="inline-code">readability_ml/</code></td><td>Режим чтения</td></tr>
-                    <tr><td><code class="inline-code">ntp/</code></td><td>Новая вкладка с рекомендациями</td></tr>
-                </tbody>
-            </table>
-        </div> -->
+        <div class="code-block"><code>=== MAX (3 домена) ===<br>max.ru, legal.max.ru, download.max.ru</code></div>
+
+        <div class="code-block"><code>=== Госуслуги (18 доменов) ===<br>gosuslugi.ru, mos.ru, esia.gosuslugi.ru,<br>passport.gosuslugi.ru, login.gosuslugi.ru,<br>gu.spb.ru, mfc.ru, и ещё 11 доменов</code></div>
+
+        <div class="code-block"><code>=== Mail.ru Group — 100+ доменов ===<br>📧 Mail.ru: mail.ru, e.mail.ru, cloud.mail.ru,<br>imgsmail.ru, agent.mail.ru, my.mail.ru,<br>target.mail.ru, ads.mail.ru, mradx.net, и ещё 50+<br><br>👥 VK: vk.com, vk.ru, vk.me, userapi.com,<br>mycdn.me, ads.vk.com, target.vk.com, и ещё 20+<br><br>😊 OK: ok.ru, odnoklassniki.ru, m.ok.ru,<br>api.ok.ru, ads.ok.ru, target.ok.ru, и ещё 10+<br><br>🎮 MY.GAMES: my.games, mygames.com</code></div>
+
+        <h3>5. Флаги запуска браузера</h3>
+        <p>Браузер запускается с набором флагов, которые отключают телеметрию на уровне Chromium.</p>
+
+        <p><strong>Базовые флаги (все режимы, кроме 5):</strong></p>
+        <div class="code-block"><code>--no-default-browser-check      # Не проверять браузер по умолчанию<br>--no-first-run                  # Пропустить экран первого запуска<br>--no-pings                      # Не пинговать Яндекс<br>--no-report-upload              # Не отправлять отчёты<br>--no-crash-upload               # Не отправлять краши<br>--disable-background-mode       # Запрет фоновой работы<br>--disable-background-networking # Нет фоновых сетевых запросов<br>--disable-background-timer-throttling # Нет троттлинга<br>--disable-breakpad              # Нет краш-репортов<br>--disable-crash-reporter        # Отключить краш-репортёр<br>--disable-dev-shm-usage         # Отключить /dev/shm<br>--disable-logging               # Нет логов<br>--disable-metrics               # Нет метрик<br>--disable-metrics-reporting     # Нет отчётов метрик<br>--disable-session-crashed-bubble # Нет пузыря о краше<br>--disable-usage-statistics      # Нет статистики использования<br>--no-sandbox                    # Отключить sandbox (портативность)<br>--restore-on-startup=0          # Не восстанавливать вкладки<br>--silent-debugger-extension-api # Тихий дебаггер<br>--test-type                     # Тестовый режим<br>--ignore-certificate-errors     # Игнорировать ошибки сертификатов<br>--force-dark-mode               # Тёмная тема принудительно</code></div>
+
+        <p><strong>Режимы 3 и 4 — отключение Алисы:</strong></p>
+        <div class="code-block"><code>--disable-features=Screenshots,AutomaticTabDiscarding,<br>    BackgroundModeEnabled,SessionRestoreAutoRestore,<br>    YandexAliceAssistant,YandexVoiceAssistant,<br>    VoiceActivation,AliceAssistant</code></div>
+
+        <p><strong>Режим 4 — инкогнито:</strong></p>
+        <div class="code-block"><code>--incognito</code></div>
+
+        <h3>6. Экспорт реестра + очистка</h3>
+        <p>Перед каждым запуском (режимы 1-4) лаунчер делает бэкап реестра, а затем вычищает его:</p>
+        <div class="code-block"><code># Экспорт (бэкап)<br>reg export "HKCU\Software\Yandex\YandexBrowser" AlicesThong.reg<br>reg export "HKU\*SID*\Software\Yandex\YandexBrowser" AlicesThong_HKU.reg<br><br># Очистка<br>reg delete "HKCU\Software\Yandex" /f<br>reg delete "HKU\*SID*\Software\Yandex" /f</code></div>
+        <p>.reg-файлы сохраняются в папке с лаунчером — можно в любой момент вернуть настройки обратно.</p>
+
+        <h3>7. Лаунчер (Python, customtkinter)</h3>
+        <p>Написан на Python с графическим интерфейсом на customtkinter. Компилируется в <code class="inline-code">Launcher.exe</code> через PyInstaller. Вкладки:</p>
+        <div class="code-block"><code>🚀 Запуск   — 5 режимов с логом операций<br>📦 Установка — создание портативной копии из оригинального Я.Браузера<br>🛡 Блокировка — выборочная блокировка hosts-доменов<br>🗑 Браузер  — установка/удаление Яндекс Браузера из системы</code></div>
+
+        <h3>8. PortApps — AlicesThong.exe</h3>
+        <p><code class="inline-code">AlicesThong.exe</code> (не путать с <code class="inline-code">Launcher.exe</code>) — это файл от PortApps. Он запускает <code class="inline-code">app/chrome.exe</code> как портативное приложение. PortApps создаёт временный профиль в <code class="inline-code">data/</code>, перенаправляет реестр и изолирует браузер от системы. Launcher.exe управляет этим процессом.</p>
     </section>
 
     <section id="download" class="container">
@@ -190,7 +227,7 @@
             <h2 class="section-title" style="margin-top: 0;">Скачать</h2>
             <p>Скачайте архив с последней версией сборки</p>
             <div class="download-buttons">
-                <a href="https://github.com/anton18-png/Alices-thong/releases/download/v2.1/Alices-Thong.7z" class="download-btn"><i class="fas fa-file-archive"></i><div><strong>Alices-Thong.7z</strong><span class="file-size">Архив сборки • ~2 МБ</span></div></a>
+                <a href="https://github.com/anton18-png/Alices-thong/releases/download/v3/Alices-Thong.7z" class="download-btn"><i class="fas fa-file-archive"></i><div><strong>Alices-Thong.7z</strong><span class="file-size">Архив сборки</span></div></a>
                 <a href="https://browser.yandex.ru/" target="_blank" class="download-btn"><i class="fab fa-yandex"></i><div><strong>Оригинальный Яндекс</strong><span class="file-size">Установите сначала его</span></div></a>
                 <a href="https://github.com/anton18-png/Alices-thong" target="_blank" class="download-btn"><i class="fab fa-github"></i><div><strong>GitHub</strong><span class="file-size">Исходный код и релизы</span></div></a>
             </div>
@@ -203,37 +240,5 @@
         <p><em>Яндекс не узнает, что ты здесь был. Никогда.</em></p>
         <p style="color: var(--gray);">Последнее обновление: Май 2026</p>
     </div>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Стринги Алисы</h3>
-                    <p>Яндекс Браузер, которого<br>Яндекс не увидит</p>
-                    <div class="social-links">
-                        <a href="https://github.com/anton18-png/Alices-thong" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
-                        <a href="https://t.me/all_tweaker" target="_blank" class="social-link"><i class="fab fa-telegram"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Ссылки</h3>
-                    <p><a href="#about" style="color: var(--light); text-decoration: none;">О сборке</a></p>
-                    <p><a href="#comparison" style="color: var(--light); text-decoration: none;">Сравнение</a></p>
-                    <p><a href="#install" style="color: var(--light); text-decoration: none;">Установка</a></p>
-                    <p><a href="#screenshot" style="color: var(--light); text-decoration: none;">Скриншот</a></p>
-                    <p><a href="#download" style="color: var(--light); text-decoration: none;">Скачать</a></p>
-                </div>
-                <div class="footer-section">
-                    <h3>Контакты</h3>
-                    <p>Telegram: <a href="https://t.me/all_tweaker" style="color: var(--primary);">@all_tweaker</a></p>
-                    <p>GitHub: <a href="https://github.com/anton18-png" style="color: var(--primary);">anton18-png</a></p>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>© 2026 Стринги Алисы. Неофициальная модификация Яндекс Браузера.</p>
-                <p>Все права на оригинальный браузер принадлежат ООО «Яндекс».</p>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>
