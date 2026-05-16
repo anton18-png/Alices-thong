@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>Стринги Алисы — выбор обоев</title>
+  <title>Стринги Алисы</title>
+  <link rel="icon" type="image/x-icon" href="logo.ico">
   <style>
     * {
       margin: 0;
@@ -13,7 +14,7 @@
 
     body {
       height: 100vh;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -26,10 +27,10 @@
       justify-content: center;
       gap: 2.5vh;
       position: relative;
-      transition: background-image 0.3s ease;
+      transition: background-image 0.4s ease-in-out;
     }
 
-    /* Темный оверлей поверх фона для контраста */
+    /* Улучшенный оверлей с градиентом для лучшей читаемости */
     body::before {
       content: '';
       position: absolute;
@@ -37,7 +38,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.3);
+      background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 100%);
       z-index: -1;
       pointer-events: none;
     }
@@ -47,6 +48,11 @@
       font-weight: 300;
       letter-spacing: -2px;
       text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(8px);
+      padding: 0.2em 0.6em;
+      border-radius: 60px;
+      font-family: 'Courier New', monospace;
     }
 
     .brand {
@@ -61,17 +67,22 @@
       height: 72px;
       object-fit: contain;
       filter: drop-shadow(0 6px 20px rgba(255,105,180,0.5));
+      transition: transform 0.3s ease;
+    }
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     .title {
       font-size: 3rem;
       font-weight: 700;
       font-style: italic;
-      color: #ff69b4;
+      background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
       letter-spacing: 1.5px;
-      text-shadow: 
-        0 0 15px rgba(255,105,180,0.7),
-        0 4px 12px rgba(199,21,133,0.6);
+      text-shadow: 0 2px 10px rgba(255,105,180,0.3);
     }
 
     .search-container {
@@ -100,7 +111,7 @@
       background: rgba(0, 0, 0, 0.6);
       box-shadow: 0 10px 50px rgba(0,0,0,0.8);
       transform: translateY(-1px);
-      border-color: rgba(255, 105, 180, 0.3);
+      border-color: rgba(255, 105, 180, 0.5);
     }
 
     .search-input::placeholder {
@@ -108,83 +119,30 @@
       font-size: 18px;
     }
 
-    .apps-container {
-      width: 100%;
-      max-width: 1000px;
-      margin-top: 10px;
-    }
-
-    .apps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-      gap: 30px;
-      justify-content: center;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 20px;
-      width: 100%;
-    }
-
-    .app {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-decoration: none;
+    /* Стили для кнопки поиска */
+    .search-button {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,105,180,0.7);
+      border: none;
+      border-radius: 14px;
+      padding: 8px 18px;
       color: white;
-      width: 110px;
-      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      border-radius: 16px;
-      padding: 12px 8px;
-      opacity: 1;
-      transform: scale(1);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 14px;
+      backdrop-filter: blur(4px);
     }
 
-    .app.hidden {
-      display: none;
-      opacity: 0;
-      transform: scale(0.8);
+    .search-button:hover {
+      background: #ff69b4;
+      transform: translateY(-50%) scale(1.02);
     }
 
-    .app:hover {
-      transform: translateY(-5px) scale(1.05);
-      background: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    }
-
-    .app img {
-      width: 88px;
-      height: 88px;
-      border-radius: 20px;
-      object-fit: cover;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-      background: rgba(0, 0, 0, 0.4);
-      transition: all 0.3s ease;
-      border: 2px solid rgba(255, 255, 255, 0.15);
-      margin-bottom: 8px;
-    }
-
-    .app:hover img {
-      box-shadow: 0 15px 35px rgba(0,0,0,0.7);
-      background: rgba(0, 0, 0, 0.5);
-      border-color: rgba(255, 105, 180, 0.4);
-      transform: scale(1.05);
-    }
-
-    .app span {
-      margin-top: 4px;
-      opacity: 0.95;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.7);
-      font-size: 15px;
-      font-weight: 500;
-      text-align: center;
-      line-height: 1.2;
-      max-width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    /* Шестеренка внизу справа (как просили) */
+    /* Шестеренка настроек */
     .settings-gear {
       position: fixed;
       bottom: 28px;
@@ -205,7 +163,7 @@
     }
     .settings-gear:hover {
       transform: rotate(25deg) scale(1.08);
-      background: rgba(255,105,180,0.6);
+      background: rgba(255,105,180,0.7);
       border-color: rgba(255,220,180,0.9);
     }
     .gear-icon {
@@ -213,22 +171,22 @@
       filter: drop-shadow(0 1px 4px black);
     }
 
-    /* Панель выбора обоев (кастомная) */
+    /* Панель выбора обоев */
     .wallpaper-panel {
       position: fixed;
       bottom: 95px;
       right: 28px;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(18px);
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(20px);
       border-radius: 28px;
       padding: 18px 20px;
       width: 330px;
       border: 1px solid rgba(255,105,180,0.5);
       box-shadow: 0 20px 40px rgba(0,0,0,0.6);
       z-index: 1001;
-      transition: all 0.2s ease;
+      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       opacity: 0;
-      transform: translateY(15px) scale(0.96);
+      transform: translateY(20px) scale(0.95);
       pointer-events: none;
     }
     .wallpaper-panel.open {
@@ -243,8 +201,7 @@
       margin-bottom: 14px;
       color: #ffb6d9;
       border-bottom: 1px solid rgba(255,200,200,0.3);
-      display: inline-block;
-      width: 100%;
+      padding-bottom: 8px;
     }
     .theme-buttons {
       display: flex;
@@ -279,6 +236,17 @@
       overflow-y: auto;
       padding-right: 4px;
     }
+    .wallpaper-list::-webkit-scrollbar {
+      width: 5px;
+    }
+    .wallpaper-list::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+    }
+    .wallpaper-list::-webkit-scrollbar-thumb {
+      background: #ff69b4;
+      border-radius: 10px;
+    }
     .wallpaper-item {
       aspect-ratio: 3 / 2;
       border-radius: 14px;
@@ -312,47 +280,28 @@
       color: white;
     }
 
-    /* Адаптация под разные экраны (как в оригинале) */
-    @media (max-width: 1024px) {
-      .apps-grid {
-        grid-template-columns: repeat(5, 110px);
-        gap: 25px;
-        max-width: 660px;
-      }
-    }
+    /* Адаптивность */
     @media (max-width: 768px) {
       .search-container { width: 92vw; }
-      .search-input { height: 56px; border-radius: 16px; font-size: 18px; padding: 0 60px 0 24px; }
-      .apps-grid { grid-template-columns: repeat(4, 100px); gap: 20px; max-width: 480px; }
-      .app { width: 100px; }
-      .app img { width: 80px; height: 80px; }
+      .search-input { height: 56px; border-radius: 16px; font-size: 18px; padding: 0 70px 0 24px; }
       .wallpaper-panel { width: 290px; right: 20px; bottom: 85px; }
       .settings-gear { width: 48px; height: 48px; bottom: 22px; right: 22px; }
       .gear-icon { font-size: 28px; }
+      .clock { font-size: 8vh; }
+      .search-button { padding: 6px 14px; font-size: 12px; }
     }
     @media (max-width: 600px) {
       .title { font-size: 2.4rem; }
       .logo { width: 60px; height: 60px; }
-      .clock { font-size: 13vw; }
+      .clock { font-size: 13vw; padding: 0.2em 0.4em; }
       .search-container { width: 90vw; }
-      .search-input { height: 52px; border-radius: 14px; font-size: 17px; padding: 0 50px 0 22px; }
-      .apps-grid { grid-template-columns: repeat(3, 90px); gap: 20px; max-width: 330px; margin-top: 10px; }
-      .app { width: 90px; padding: 10px 6px; }
-      .app img { width: 72px; height: 72px; border-radius: 18px; }
-      .app span { font-size: 14px; }
-      body::before { background: rgba(0, 0, 0, 0.4); }
+      .search-input { height: 52px; border-radius: 14px; font-size: 17px; padding: 0 65px 0 22px; }
+      body::before { background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%); }
       .wallpaper-panel { width: 270px; right: 12px; bottom: 78px; padding: 15px; }
-    }
-    @media (max-width: 400px) {
-      .apps-grid { grid-template-columns: repeat(3, 80px); gap: 15px; max-width: 270px; }
-      .app { width: 80px; }
-      .app img { width: 64px; height: 64px; }
+      .search-button { padding: 5px 12px; font-size: 11px; }
     }
     @media (min-width: 1200px) {
       .search-container { width: min(90vw, 920px); }
-      .apps-grid { max-width: 1100px; grid-template-columns: repeat(5, 120px); }
-      .app { width: 120px; }
-      .app img { width: 96px; height: 96px; }
     }
   </style>
 </head>
@@ -360,59 +309,14 @@
   <div class="clock" id="time">--:--</div>
 
   <div class="brand">
-    <!-- <img src="logo.png" alt="Стринги Алисы" class="logo" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2245%22%20fill%3D%22%23ff69b4%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%2268%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%20font-size%3D%2240%22%3EA%3C%2Ftext%3E%3C%2Fsvg%3E'"> -->
-    <h1 class="title">Стринги Алисы</h1>
+    <h1 class="title">✨ Стринги Алисы ✨</h1>
   </div>
 
   <div class="search-container">
-    <form action="https://yandex.ru/search/" method="GET" target="_blank">
-      <input type="text" name="text" class="search-input" placeholder="Введите запрос или адрес" autocomplete="off" />
+    <form action="https://duckduckgo.com/" method="GET" target="_blank">
+      <input type="text" name="q" class="search-input" placeholder="Поиск в DuckDuckGo или введите адрес сайта" autocomplete="off" />
+      <button type="submit" class="search-button">🔍 Найти</button>
     </form>
-  </div>
-
-  <div class="apps-container">
-    <div class="apps-grid">
-      <a href="https://yandex.ru" class="app" target="_blank">
-        <img src="icons/yandex.png" alt="Yandex" onerror="this.src='https://favicon.yandex.net/favicon/yandex.ru'">
-        <span>Яндекс</span>
-      </a>
-      <a href="https://dzen.ru" class="app" target="_blank">
-        <img src="icons/yandex.png" alt="Дзен" onerror="this.src='https://favicon.yandex.net/favicon/dzen.ru'">
-        <span>Дзен</span>
-      </a>
-      <a href="https://mail.yandex.ru" class="app" target="_blank">
-        <img src="icons/mail.png" alt="Почта Яндекс" onerror="this.src='https://favicon.yandex.net/favicon/mail.yandex.ru'">
-        <span>Яндекс Почта</span>
-      </a>
-      <a href="https://mail.yandex.ru/lite" class="app" target="_blank">
-        <img src="icons/mail.png" alt="Почта Лайт" onerror="this.src='https://favicon.yandex.net/favicon/mail.yandex.ru'">
-        <span>Почта Лайт</span>
-      </a>
-      <a href="https://translate.yandex.ru" class="app" target="_blank">
-        <img src="icons/yandex.png" alt="Переводчик" onerror="this.src='https://favicon.yandex.net/favicon/translate.yandex.ru'">
-        <span>Переводчик</span>
-      </a>
-      <a href="https://disk.yandex.ru" class="app" target="_blank">
-        <img src="icons/drive.png" alt="Диск" onerror="this.src='https://favicon.yandex.net/favicon/disk.yandex.ru'">
-        <span>Диск</span>
-      </a>
-      <a href="https://music.yandex.ru" class="app" target="_blank">
-        <img src="icons/music.png" alt="Музыка" onerror="this.src='https://favicon.yandex.net/favicon/music.yandex.ru'">
-        <span>Музыка</span>
-      </a>
-      <a href="https://mail.ru" class="app" target="_blank">
-        <img src="icons/mail.png" alt="Mail.ru" onerror="this.src='https://favicon.yandex.net/favicon/mail.ru'">
-        <span>Mail.ru</span>
-      </a>
-      <a href="https://vk.com" class="app" target="_blank">
-        <img src="icons/vk.png" alt="ВКонтакте" onerror="this.src='https://vk.com/favicon.ico'">
-        <span>ВКонтакте</span>
-      </a>
-      <a href="https://youtube.com" class="app" target="_blank">
-        <img src="icons/youtube.png" alt="YouTube" onerror="this.src='https://www.youtube.com/s/desktop/014b3d06/img/favicon_32x32.png'">
-        <span>YouTube</span>
-      </a>
-    </div>
   </div>
 
   <!-- Шестеренка смены обоев -->
@@ -422,7 +326,7 @@
 
   <!-- Панель выбора обоев -->
   <div class="wallpaper-panel" id="wallpaperPanel">
-    <div class="panel-title">🖌️ Сменить обои</div>
+    <div class="panel-title">🎨 Сменить обои</div>
     <div class="theme-buttons">
       <div class="theme-btn" data-theme="dark" id="darkThemeBtn">🌙 Тёмные</div>
       <div class="theme-btn" data-theme="light" id="lightThemeBtn">☀️ Светлые</div>
@@ -434,7 +338,7 @@
   <script>
     // ---------- НАСТРОЙКИ ОБОЕВ ----------
     const BASE_BG = 'backgrounds';
-    const WALL_COUNT = 8;
+    const WALL_COUNT = 10;
     let currentTheme = 'dark';
     let currentId = 1;
 
@@ -548,27 +452,34 @@
       panel.classList.remove('open');
     }
 
+    // Event Listeners
     gear.addEventListener('click', (e) => { e.stopPropagation(); togglePanel(); });
     closePanel.addEventListener('click', closePanelFunc);
     darkBtn.addEventListener('click', () => { if (currentTheme !== 'dark') switchTheme('dark'); closePanelFunc(); });
     lightBtn.addEventListener('click', () => { if (currentTheme !== 'light') switchTheme('light'); closePanelFunc(); });
+    
+    // Закрытие панели при клике вне её области
     document.addEventListener('click', (e) => {
       if (panel.classList.contains('open') && !panel.contains(e.target) && !gear.contains(e.target)) {
         panel.classList.remove('open');
       }
     });
 
-    // Часы и фокус
+    // Часы
     function updateTime() {
       const now = new Date();
       const h = String(now.getHours()).padStart(2, '0');
       const m = String(now.getMinutes()).padStart(2, '0');
-      document.getElementById('time').textContent = `${h}:${m}`;
+      document.getElementById('time').innerHTML = `${h}<span style="font-size:0.8em; opacity:0.7;">:</span>${m}`;
     }
     updateTime();
     setInterval(updateTime, 1000);
-    document.querySelector('.search-input').focus();
+    
+    // Фокус на поиск
+    const searchInput = document.querySelector('.search-input');
+    if (searchInput) searchInput.focus();
 
+    // Загрузка сохранённых обоев
     loadSaved();
   </script>
 </body>
