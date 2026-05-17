@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Opera GX</title>
+  <link rel="icon" type="image/x-icon" href="opera.svg">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #ffffff;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5vh;
+      position: relative;
+      transition: background-image 0.4s ease-in-out;
+    }
+
+    /* Улучшенный оверлей с градиентом для лучшей читаемости */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 100%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .clock {
+      font-size: 9vh;
+      font-weight: 300;
+      letter-spacing: -2px;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(8px);
+      padding: 0.2em 0.6em;
+      border-radius: 60px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin: 1vh 0 3vh;
+    }
+
+    .logo {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 20px rgba(255,105,180,0.5));
+      transition: transform 0.3s ease;
+    }
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .title {
+      font-size: 3rem;
+      font-weight: 700;
+      font-style: italic;
+      background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 1.5px;
+      text-shadow: 0 2px 10px rgba(255,105,180,0.3);
+    }
+
+    .search-container {
+      width: min(95vw, 880px);
+      position: relative;
+      margin: 0 auto;
+    }
+
+    .search-input {
+      width: 100%;
+      height: 60px;
+      border: none;
+      border-radius: 18px;
+      padding: 0 70px 0 30px;
+      font-size: 19px;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px) brightness(0.8);
+      color: white;
+      outline: none;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+      transition: all 0.25s;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .search-input:focus {
+      background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 10px 50px rgba(0,0,0,0.8);
+      transform: translateY(-1px);
+      border-color: rgba(255, 105, 180, 0.5);
+    }
+
+    .search-input::placeholder {
+      color: rgba(255,255,255,0.7);
+      font-size: 18px;
+    }
+
+    /* Стили для кнопки поиска */
+    .search-button {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,105,180,0.7);
+      border: none;
+      border-radius: 14px;
+      padding: 8px 18px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 14px;
+      backdrop-filter: blur(4px);
+    }
+
+    .search-button:hover {
+      background: #ff69b4;
+      transform: translateY(-50%) scale(1.02);
+    }
+
+    /* Шестеренка настроек */
+    .settings-gear {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 52px;
+      height: 52px;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+      border-radius: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1000;
+      transition: all 0.2s;
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+    .settings-gear:hover {
+      transform: rotate(25deg) scale(1.08);
+      background: rgba(255,105,180,0.7);
+      border-color: rgba(255,220,180,0.9);
+    }
+    .gear-icon {
+      font-size: 30px;
+      filter: drop-shadow(0 1px 4px black);
+    }
+
+    /* Панель выбора обоев */
+    .wallpaper-panel {
+      position: fixed;
+      bottom: 95px;
+      right: 28px;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(20px);
+      border-radius: 28px;
+      padding: 18px 20px;
+      width: 330px;
+      border: 1px solid rgba(255,105,180,0.5);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      z-index: 1001;
+      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+      pointer-events: none;
+    }
+    .wallpaper-panel.open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+    .panel-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 14px;
+      color: #ffb6d9;
+      border-bottom: 1px solid rgba(255,200,200,0.3);
+      padding-bottom: 8px;
+    }
+    .theme-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .theme-btn {
+      background: rgba(30,30,45,0.9);
+      border: 1px solid rgba(255,255,200,0.4);
+      color: white;
+      font-size: 0.9rem;
+      padding: 7px 16px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      text-align: center;
+      flex: 1;
+    }
+    .theme-btn.active {
+      background: #ff69b4;
+      border-color: white;
+      color: #1a0a14;
+      box-shadow: 0 0 10px rgba(255,105,180,0.7);
+    }
+    .wallpaper-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      max-height: 250px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+    .wallpaper-list::-webkit-scrollbar {
+      width: 5px;
+    }
+    .wallpaper-list::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+    }
+    .wallpaper-list::-webkit-scrollbar-thumb {
+      background: #ff69b4;
+      border-radius: 10px;
+    }
+    .wallpaper-item {
+      aspect-ratio: 3 / 2;
+      border-radius: 14px;
+      background-size: cover;
+      background-position: center;
+      border: 2px solid rgba(255,255,255,0.6);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .wallpaper-item:hover {
+      transform: scale(1.04);
+      border-color: #ff69b4;
+    }
+    .wallpaper-item.active-wall {
+      border: 3px solid #ff69b4;
+      box-shadow: 0 0 12px #ff69b4;
+    }
+    .close-panel {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 13px;
+      color: #ddd;
+      cursor: pointer;
+      background: rgba(0,0,0,0.5);
+      border-radius: 40px;
+      padding: 6px;
+      transition: 0.2s;
+    }
+    .close-panel:hover {
+      background: #ff69b4;
+      color: white;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+      .search-container { width: 92vw; }
+      .search-input { height: 56px; border-radius: 16px; font-size: 18px; padding: 0 70px 0 24px; }
+      .wallpaper-panel { width: 290px; right: 20px; bottom: 85px; }
+      .settings-gear { width: 48px; height: 48px; bottom: 22px; right: 22px; }
+      .gear-icon { font-size: 28px; }
+      .clock { font-size: 8vh; }
+      .search-button { padding: 6px 14px; font-size: 12px; }
+    }
+    @media (max-width: 600px) {
+      .title { font-size: 2.4rem; }
+      .logo { width: 60px; height: 60px; }
+      .clock { font-size: 13vw; padding: 0.2em 0.4em; }
+      .search-container { width: 90vw; }
+      .search-input { height: 52px; border-radius: 14px; font-size: 17px; padding: 0 65px 0 22px; }
+      body::before { background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%); }
+      .wallpaper-panel { width: 270px; right: 12px; bottom: 78px; padding: 15px; }
+      .search-button { padding: 5px 12px; font-size: 11px; }
+    }
+    @media (min-width: 1200px) {
+      .search-container { width: min(90vw, 920px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="clock" id="time">--:--</div>
+
+  <div class="brand">
+    <h1 class="title">✨ Opera GX ✨</h1>
+  </div>
+
+  <div class="search-container">
+    <form action="https://duckduckgo.com/" method="GET" target="_blank">
+      <input type="text" name="q" class="search-input" placeholder="Поиск в DuckDuckGo или введите адрес сайта" autocomplete="off" />
+      <button type="submit" class="search-button">🔍 Найти</button>
+    </form>
+  </div>
+
+  <!-- Шестеренка смены обоев -->
+  <div class="settings-gear" id="gearBtn">
+    <span class="gear-icon">⚙️</span>
+  </div>
+
+  <!-- Панель выбора обоев -->
+  <div class="wallpaper-panel" id="wallpaperPanel">
+    <div class="panel-title">🎨 Сменить обои</div>
+    <div class="theme-buttons">
+      <div class="theme-btn" data-theme="dark" id="darkThemeBtn">🌙 Тёмные</div>
+      <div class="theme-btn" data-theme="light" id="lightThemeBtn">☀️ Светлые</div>
+    </div>
+    <div class="wallpaper-list" id="wallpaperList"></div>
+    <div class="close-panel" id="closePanelBtn">✖ Закрыть</div>
+  </div>
+
+  <script>
+    // ---------- НАСТРОЙКИ ОБОЕВ ----------
+    const BASE_BG = 'backgrounds/opera';
+    const WALL_COUNT = 5;
+    let currentTheme = 'dark';
+    let currentId = 1;
+
+    const bodyEl = document.body;
+    const gear = document.getElementById('gearBtn');
+    const panel = document.getElementById('wallpaperPanel');
+    const darkBtn = document.getElementById('darkThemeBtn');
+    const lightBtn = document.getElementById('lightThemeBtn');
+    const wallpaperListDiv = document.getElementById('wallpaperList');
+    const closePanel = document.getElementById('closePanelBtn');
+
+    function getWallUrl(theme, id) {
+      return `${BASE_BG}/${theme}/${id}.jpg`;
+    }
+
+    function setBackground(theme, id) {
+      const url = getWallUrl(theme, id);
+      bodyEl.style.backgroundImage = `url('${url}')`;
+      currentTheme = theme;
+      currentId = id;
+      try {
+        localStorage.setItem('alice_wall_theme', theme);
+        localStorage.setItem('alice_wall_id', id);
+      } catch(e) {}
+      updateActiveTheme();
+      highlightActiveWall();
+    }
+
+    function updateActiveTheme() {
+      if (currentTheme === 'dark') {
+        darkBtn.classList.add('active');
+        lightBtn.classList.remove('active');
+      } else {
+        lightBtn.classList.add('active');
+        darkBtn.classList.remove('active');
+      }
+    }
+
+    function highlightActiveWall() {
+      const items = document.querySelectorAll('.wallpaper-item');
+      items.forEach(item => {
+        const wid = parseInt(item.getAttribute('data-id'), 10);
+        const wtheme = item.getAttribute('data-theme');
+        if (wid === currentId && wtheme === currentTheme) {
+          item.classList.add('active-wall');
+        } else {
+          item.classList.remove('active-wall');
+        }
+      });
+    }
+
+    function renderGrid(theme) {
+      wallpaperListDiv.innerHTML = '';
+      for (let i = 1; i <= WALL_COUNT; i++) {
+        const thumb = getWallUrl(theme, i);
+        const div = document.createElement('div');
+        div.className = 'wallpaper-item';
+        if (currentTheme === theme && currentId === i) div.classList.add('active-wall');
+        div.setAttribute('data-id', i);
+        div.setAttribute('data-theme', theme);
+        div.style.backgroundImage = `url('${thumb}')`;
+        div.style.backgroundSize = 'cover';
+        div.addEventListener('click', (e) => {
+          e.stopPropagation();
+          setBackground(theme, i);
+          panel.classList.remove('open');
+        });
+        wallpaperListDiv.appendChild(div);
+      }
+      highlightActiveWall();
+    }
+
+    function switchTheme(theme) {
+      currentTheme = theme;
+      if (currentId < 1) currentId = 1;
+      if (currentId > WALL_COUNT) currentId = 1;
+      setBackground(currentTheme, currentId);
+      renderGrid(currentTheme);
+      updateActiveTheme();
+    }
+
+    function loadSaved() {
+      let savedTheme = null, savedId = null;
+      try {
+        savedTheme = localStorage.getItem('alice_wall_theme');
+        savedId = localStorage.getItem('alice_wall_id');
+      } catch(e) {}
+      if (savedTheme === 'dark' || savedTheme === 'light') currentTheme = savedTheme;
+      else currentTheme = 'dark';
+      if (savedId && !isNaN(parseInt(savedId,10))) {
+        let pid = parseInt(savedId,10);
+        if (pid >=1 && pid <= WALL_COUNT) currentId = pid;
+        else currentId = 1;
+      } else currentId = 1;
+      const initUrl = getWallUrl(currentTheme, currentId);
+      bodyEl.style.backgroundImage = `url('${initUrl}')`;
+      renderGrid(currentTheme);
+      updateActiveTheme();
+    }
+
+    function togglePanel() {
+      if (panel.classList.contains('open')) {
+        panel.classList.remove('open');
+      } else {
+        renderGrid(currentTheme);
+        panel.classList.add('open');
+      }
+    }
+
+    function closePanelFunc() {
+      panel.classList.remove('open');
+    }
+
+    // Event Listeners
+    gear.addEventListener('click', (e) => { e.stopPropagation(); togglePanel(); });
+    closePanel.addEventListener('click', closePanelFunc);
+    darkBtn.addEventListener('click', () => { if (currentTheme !== 'dark') switchTheme('dark'); closePanelFunc(); });
+    lightBtn.addEventListener('click', () => { if (currentTheme !== 'light') switchTheme('light'); closePanelFunc(); });
+    
+    // Закрытие панели при клике вне её области
+    document.addEventListener('click', (e) => {
+      if (panel.classList.contains('open') && !panel.contains(e.target) && !gear.contains(e.target)) {
+        panel.classList.remove('open');
+      }
+    });
+
+    // Часы
+    function updateTime() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      document.getElementById('time').innerHTML = `${h}<span style="font-size:0.8em; opacity:0.7;">:</span>${m}`;
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+    
+    // Фокус на поиск
+    const searchInput = document.querySelector('.search-input');
+    if (searchInput) searchInput.focus();
+
+    // Загрузка сохранённых обоев
+    loadSaved();
+  </script>
+</body>
+</html>
